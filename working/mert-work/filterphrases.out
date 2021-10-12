@@ -1,0 +1,2 @@
+To run the decoder, please call:
+  moses -f /home/jwang/working/mert-work/filtered/moses.ini -i /home/jwang/working/mert-work/filtered/input.7644
