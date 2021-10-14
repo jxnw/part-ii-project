@@ -7,12 +7,13 @@ def main(args):
     out = open(args.out, "w")
     # Do not apply edits with these error types
     skip = {"noop", "UNK", "Um"}
+    flag = args.flag
 
     for sent in m2:
         sent = sent.split("\n")
         cor_sent = sent[0].split()[1:]  # Ignore "S "
         original = " ".join(cor_sent) + "\n"
-        if len(cor_sent) > 80 or len(cor_sent) < 1:
+        if (flag and len(cor_sent) > 80) or len(cor_sent) < 1:
             continue
         edits = sent[1:]
         offset = 0
@@ -29,7 +30,7 @@ def main(args):
             cor = edit[2].split()
             cor_sent[start + offset:end + offset] = cor
             offset = offset - (end - start) + len(cor)
-        if len(cor_sent) > 80 or len(cor_sent) < 1:
+        if (flag and len(cor_sent) > 80) or len(cor_sent) < 1:
             continue
         source.write(original)
         out.write(" ".join(cor_sent) + "\n")
@@ -44,5 +45,6 @@ if __name__ == "__main__":
     parser.add_argument("-source", help="A path to where we save the output original text file.", required=True)
     parser.add_argument("-out", help="A path to where we save the output corrected text file.", required=True)
     parser.add_argument("-id", help="The id of the target annotator in the m2 file.", type=int, default=0)
+    parser.add_argument("-flag", help="Remove sentences length > 80", type=int, default=False)
     args = parser.parse_args()
     main(args)
