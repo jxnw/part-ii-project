@@ -1,0 +1,14 @@
+LexicalReordering0= 0.291514
+LexicalReordering0= 0.0161516
+LexicalReordering0= 0.0153303
+LexicalReordering0= 0.0365869
+LexicalReordering0= 0.00344172
+LexicalReordering0= 0.0284769
+Distortion0= 0.129848
+LM0= 0.035475
+WordPenalty0= -0.00228396
+PhrasePenalty0= 0.0417879
+TranslationModel0= -0.0134752
+TranslationModel0= 0.0378411
+TranslationModel0= 0.319982
+TranslationModel0= -0.0278049

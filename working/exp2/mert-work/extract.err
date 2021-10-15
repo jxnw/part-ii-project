@@ -1,0 +1,12 @@
+Binary write mode is NOT selected
+Scorer type: BLEU
+name: case value: true
+Loading reference from /home/jwang/github/part-ii-project/corpus/dev/fce.dev.gold.bea19.co
+.....................Data::m_score_type BLEU
+Data::Scorer type from Scorer: BLEU
+loading nbest from run9.best100.out.gz
+Loaded N-best lists : [Wall 0.854833 CPU 0.84375] seconds.
+Binary write mode is NOT selected
+saving the array into run9.features.dat
+saving the array into run9.scores.dat
+Stopping... : [Wall 2.42743 CPU 2.39062] seconds.
