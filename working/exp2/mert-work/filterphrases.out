@@ -1,2 +1,0 @@
-To run the decoder, please call:
-  moses -f /home/jwang/github/part-ii-project/working/exp2/mert-work/filtered/moses.ini -i /home/jwang/github/part-ii-project/working/exp2/mert-work/filtered/input.706

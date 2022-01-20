@@ -7,6 +7,7 @@ def main(args):
     out = open(args.out, "w")
 
     for rows in phrase_table:
+        # Add a column to phrase table
         row = rows.split(" ||| ")
 
         # Update score
