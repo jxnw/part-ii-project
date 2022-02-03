@@ -3,3 +3,4 @@ phrase_pair/phrase_table
 phrase_pair/pt_rw
 phrase_pair/RNN/cc.en.50.bin
 .idea/workspace.xml
+phrase_pair/sparse/phrase_tables
