@@ -1,7 +1,6 @@
 import fasttext
 import numpy as np
 import torch
-import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
 
 path_to_or_train = "../fce.train.gold.bea19.clean.or"
@@ -107,13 +106,13 @@ train_word_loader = DataLoader(train_word_dataset, batch_size=64)
 
 
 # ============================================ model training
-class Model(nn.Module):
+class Model(torch.nn.Module):
     def __init__(self, input_size, hidden_size, output_size):
         super(Model, self).__init__()
         self.hidden_size = hidden_size
 
-        self.rnn = nn.RNN(input_size, hidden_size, batch_first=True)
-        self.fc = nn.Linear(hidden_size, output_size)
+        self.rnn = torch.nn.RNN(input_size, hidden_size, batch_first=True)
+        self.fc = torch.nn.Linear(hidden_size, output_size)
 
     def forward(self, x):
         batch_size = x.size(0)
@@ -133,7 +132,7 @@ n_epochs = 10
 
 # create a model
 model = Model(100, 20, 50)
-loss_fn = nn.MSELoss()
+loss_fn = torch.nn.MSELoss()
 optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
 
 

@@ -1,0 +1,57 @@
+
+TRANSLATION HYPOTHESIS DETAILS:
+         SOURCE: [0..1] Dear Mrs
+  TRANSLATED AS: Dear Mrs
+  WORD ALIGNED: 0-0 1-1
+         SOURCE: [2..3] Smith ,
+  TRANSLATED AS: Smith ,
+  WORD ALIGNED: 0-0 1-1
+
+SOURCE/TARGET SPANS:
+  SOURCE: 0-1 2-3
+  TARGET: 0-1 2-3
+
+
+SCORES (UNWEIGHTED/WEIGHTED): core=(0.000,-4.000,2.000,-0.229,-0.167,-0.011,-0.127,-9.592,-0.088,0.000,0.000,-0.011,0.000,0.000,0.000,-36.154,0.000)  weighted(TODO)
+
+TRANSLATION HYPOTHESIS DETAILS:
+         SOURCE: [0..0] As
+  TRANSLATED AS: As
+  WORD ALIGNED: 0-0
+         SOURCE: [1..1] nights
+  TRANSLATED AS: nights
+  WORD ALIGNED: 0-0
+         SOURCE: [2..3] may be
+  TRANSLATED AS: may be
+  WORD ALIGNED: 0-0 1-1
+         SOURCE: [4..5] cold at
+  TRANSLATED AS: cold at
+  WORD ALIGNED: 0-0 1-1
+         SOURCE: [6..10] this time of the year
+  TRANSLATED AS: this time of the year
+  WORD ALIGNED: 0-0 1-1 2-2 3-3 4-4
+         SOURCE: [11..13] , may I
+  TRANSLATED AS: , may I
+  WORD ALIGNED: 0-0 1-1 2-2
+         SOURCE: [14..16] suggest that you
+  TRANSLATED AS: suggest that you
+  WORD ALIGNED: 0-0 1-1 2-2
+         SOURCE: [17..18] take with
+  TRANSLATED AS: take with
+  WORD ALIGNED: 0-0 1-1
+         SOURCE: [19..20] you a
+  TRANSLATED AS: you a
+  WORD ALIGNED: 0-0 1-1
+         SOURCE: [21..21] pullover
+  TRANSLATED AS: pullover|UNK|UNK|UNK
+  WORD ALIGNED: 0-0
+         SOURCE: [22..22] .
+  TRANSLATED AS: .
+  WORD ALIGNED: 0-0
+
+SOURCE/TARGET SPANS:
+  SOURCE: 0 1 2-3 4-5 6-7-8-9-10 11-12-13 14-15-16 17-18 19-20 21 22
+  TARGET: 0 1 2-3 4-5 6-7-8-9-10 11-12-13 14-15-16 17-18 19-20 21 22
+
+
+SCORES (UNWEIGHTED/WEIGHTED): core=(-100.000,-23.000,11.000,-1.382,-1.772,-1.910,-2.180,-51.197,-1.465,0.000,0.000,-1.540,0.000,0.000,0.000,-104.408,0.000)  weighted(TODO)

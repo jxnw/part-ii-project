@@ -1,0 +1,359 @@
+% Template for a Computer Science Tripos Part II project dissertation
+\documentclass[12pt,a4paper,twoside,openright]{report}
+\usepackage[pdfborder={0 0 0}]{hyperref}    % turns references into hyperlinks
+\usepackage[margin=25mm]{geometry}  % adjusts page layout
+\usepackage{graphicx}  % allows inclusion of PDF, PNG and JPG images
+\usepackage{verbatim}
+\usepackage{docmute}   % only needed to allow inclusion of proposal.tex
+\usepackage{makecell}
+
+\raggedbottom                           % try to avoid widows and orphans
+\sloppy
+\clubpenalty1000%
+\widowpenalty1000%
+
+\renewcommand{\baselinestretch}{1.1}    % adjust line spacing to make
+                                        % more readable
+
+\begin{document}
+
+\bibliographystyle{plain}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title
+
+
+\pagestyle{empty}
+
+\rightline{\LARGE \textbf{Jiaxin Wang}}
+
+\vspace*{60mm}
+\begin{center}
+\Huge
+\textbf{A Recursive Recurrent Neural Network Decoder for Grammatical Error Correction} \\[5mm]
+Computer Science Tripos -- Part II \\[5mm]
+Emmanuel College \\[5mm]
+\today  % today's date
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Proforma, table of contents and list of figures
+
+\pagestyle{plain}
+
+\chapter*{Proforma}
+
+{\large
+\begin{tabular}{p{4.5cm}p{12cm}}
+Candidate Number:   & \bf -                       \\
+Project Title:      & \bf A Recursive Recurrent Neural Network Decoder for Grammatical Error Correction \\
+Examination:        & \bf Computer Science Tripos -- Part II, May 2022  \\
+Word Count:         & \bf - \footnotemark[1] \\
+Code line count:    & \bf - \\
+Project Originator: & -                    \\
+Supervisor:         & Dr Zheng Yuan, Dr Christopher Bryant                    \\ 
+\end{tabular}
+}
+\footnotetext[1]{This word count was computed
+by \texttt{detex diss.tex | tr -cd '0-9A-Za-z $\tt\backslash$n' | wc -w}
+}
+\stepcounter{footnote}
+
+
+\section*{Original Aims of the Project}
+
+-
+
+
+\section*{Work Completed}
+
+-
+
+\section*{Special Difficulties}
+
+-
+ 
+\newpage
+\section*{Declaration}
+
+I, Jiaxin Wang of Emmanuel College, being a candidate for Part II of the Computer
+Science Tripos, hereby declare that this dissertation and the work described in 
+it are my own work, unaided except as may be specified below, and that the dissertation
+does not contain material that has already been used to any substantial
+extent for a comparable purpose.
+
+\bigskip
+\leftline{Signed [signature]}
+
+\medskip
+\leftline{Date [date]}
+
+\tableofcontents
+
+\listoffigures
+
+\newpage
+\section*{Acknowledgements}
+
+-
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% now for the chapters
+
+\pagestyle{headings}
+
+\chapter{Introduction}
+
+This project concerns my implementation of a \textit{recursive recurrent neural network} model (R\textsuperscript{2}NN) proposed by Liu et al. (2014) \cite{r2nn} This is to be integrated in a statistical machine translation (SMT) system to attempt the task of grammatical error correction. [How well have you done?]
+
+\section{Motivation}
+
+Grammatical Error Correction (GEC) is the task of producing a grammatically correct sentence given a potentially erroneous text while preserving its meaning. The main motivation behind this task lies in its role in helping learners of a foreign language understand the language better. In addition, native speakers can make use of such GEC tools to avoid mistakes in their writing. Being an ESL (English as a second language) learner myself, I would like to investigate models that can be used for the task of GEC in English, and I hope that it can benefit people who may find GEC tools useful.
+
+
+\section{Problem Overview}
+
+The task of Grammatical Error Correction can be seen as a machine translation process, where the input is a text which may contain grammatical errors, and the output is an error-free text. This project uses a statistical machine translation (SMT) approach to solve GEC.
+
+\noindent
+A recursive recurrent neural network (R\textsuperscript{2}NN) was proposed by Liu et al. (2014) \cite{r2nn} for SMT. The goal of this project is to implement the proposed model to be used for GEC. The model should aim to correct all types of errors, namely grammatical, lexical, and orthographical errors. Its performance will be evaluated against a baseline SMT system, Moses\cite{moses}.
+
+\subsection{SMT system}
+
+A typical SMT system consists of four main components: The language model (LM), the translation model (TM), the reordering model and the decoder (Yuan, 2017) \cite{yuan2017phd}. The LM computes the probability of a given sequence being valid. The TM builds a translation table which contains mappings of words/phrases between source and target corpora. The reordering model learns about phrase reordering of translation. The decoder finds a translation candidate who is most likely to be the translation of the source sentence. In the task of GEC, this would be the most probable correction to the original erroneous sentence.
+
+\noindent
+The Moses baseline system uses KenLM as the language model. For the translation model, it uses GIZA++ to obtain a word alignment model. The model should be trained to produce a phrase table and associated scores. Reordering tables are also created during this process. Eventually, the Moses decoder will find the best translation candidate given input based on the scores it calculated in previous stages.
+
+\subsection{Recurrent Neural Network}
+
+\subsection{Recursive Neural Network}
+
+
+\section{Related Work}
+
+\subsection{Moses}
+
+Moses is an open-source toolkit for SMT. It has been used to build a GEC system (Yuan and Felice, 2013) \cite{yuan-felice-2013-constrained},
+
+
+
+\chapter{Preparation}
+
+\section{Requirement Analysis}
+
+\section{Starting Point}
+
+\section{Method and Tools}
+
+\section{Dataset}
+
+
+\chapter{Implementation}
+
+\section{Verbatim text}
+
+Verbatim text can be included using \verb|\begin{verbatim}| and
+\verb|\end{verbatim}|. I normally use a slightly smaller font and
+often squeeze the lines a little closer together, as in:
+
+{\renewcommand{\baselinestretch}{0.8}\small
+\begin{verbatim}
+GET "libhdr"
+ 
+GLOBAL { count:200; all  }
+ 
+LET try(ld, row, rd) BE TEST row=all
+                        THEN count := count + 1
+                        ELSE { LET poss = all & ~(ld | row | rd)
+                               UNTIL poss=0 DO
+                               { LET p = poss & -poss
+                                 poss := poss - p
+                                 try(ld+p << 1, row+p, rd+p >> 1)
+                               }
+                             }
+LET start() = VALOF
+{ all := 1
+  FOR i = 1 TO 12 DO
+  { count := 0
+    try(0, 0, 0)
+    writef("Number of solutions to %i2-queens is %i5*n", i, count)
+    all := 2*all + 1
+  }
+  RESULTIS 0
+}
+\end{verbatim}
+}
+
+\section{Tables}
+
+\begin{samepage}
+Here is a simple example\footnote{A footnote} of a table.
+
+\begin{center}
+\begin{tabular}{l|c|r}
+Left      & Centred & Right \\
+Justified &         & Justified \\[3mm]
+%\hline\\%[-2mm]
+First     & A       & XXX \\
+Second    & AA      & XX  \\
+Last      & AAA     & X   \\
+\end{tabular}
+\end{center}
+
+\noindent
+There is another example table in the proforma.
+\end{samepage}
+
+\section{Simple diagrams}
+
+Simple diagrams can be written directly in \LaTeX.  For example, see
+figure~\ref{latexpic1} on page~\pageref{latexpic1} and see
+figure~\ref{latexpic2} on page~\pageref{latexpic2}.
+
+\begin{figure}
+\setlength{\unitlength}{1mm}
+\begin{center}
+\begin{picture}(125,100)
+\put(0,80){\framebox(50,10){AAA}}
+\put(0,60){\framebox(50,10){BBB}}
+\put(0,40){\framebox(50,10){CCC}}
+\put(0,20){\framebox(50,10){DDD}}
+\put(0,00){\framebox(50,10){EEE}}
+
+\put(75,80){\framebox(50,10){XXX}}
+\put(75,60){\framebox(50,10){YYY}}
+\put(75,40){\framebox(50,10){ZZZ}}
+
+\put(25,80){\vector(0,-1){10}}
+\put(25,60){\vector(0,-1){10}}
+\put(25,50){\vector(0,1){10}}
+\put(25,40){\vector(0,-1){10}}
+\put(25,20){\vector(0,-1){10}}
+
+\put(100,80){\vector(0,-1){10}}
+\put(100,70){\vector(0,1){10}}
+\put(100,60){\vector(0,-1){10}}
+\put(100,50){\vector(0,1){10}}
+
+\put(50,65){\vector(1,0){25}}
+\put(75,65){\vector(-1,0){25}}
+\end{picture}
+\end{center}
+\caption{A picture composed of boxes and vectors.}
+\label{latexpic1}
+\end{figure}
+
+\begin{figure}
+\setlength{\unitlength}{1mm}
+\begin{center}
+
+\begin{picture}(100,70)
+\put(47,65){\circle{10}}
+\put(45,64){abc}
+
+\put(37,45){\circle{10}}
+\put(37,51){\line(1,1){7}}
+\put(35,44){def}
+
+\put(57,25){\circle{10}}
+\put(57,31){\line(-1,3){9}}
+\put(57,31){\line(-3,2){15}}
+\put(55,24){ghi}
+
+\put(32,0){\framebox(10,10){A}}
+\put(52,0){\framebox(10,10){B}}
+\put(37,12){\line(0,1){26}}
+\put(37,12){\line(2,1){15}}
+\put(57,12){\line(0,2){6}}
+\end{picture}
+
+\end{center}
+\caption{A diagram composed of circles, lines and boxes.}
+\label{latexpic2}
+\end{figure}
+
+
+
+\section{Adding more complicated graphics}
+
+The use of \LaTeX\ format can be tedious and it is often better to use
+encapsulated postscript (EPS) or PDF to represent complicated graphics.
+Figure~\ref{epsfig} and~\ref{xfig} on page \pageref{xfig} are
+examples. The second figure was drawn using \texttt{xfig} and exported in
+{\tt.eps} format. This is my recommended way of drawing all diagrams.
+
+
+\begin{figure}[tbh]
+\centerline{\includegraphics{figs/cuarms.pdf}}
+\caption{Example figure using encapsulated postscript}
+\label{epsfig}
+\end{figure}
+
+\begin{figure}[tbh]
+\vspace{4in}
+\caption{Example figure where a picture can be pasted in}
+\label{pastedfig}
+\end{figure}
+
+
+\begin{figure}[tbh]
+\centerline{\includegraphics{figs/diagram.pdf}}
+\caption{Example diagram drawn using \texttt{xfig}}
+\label{xfig}
+\end{figure}
+
+
+\chapter{Evaluation}
+
+\section{Printing and binding}
+
+Use a ``duplex'' laser printer that can print on both sides to print
+two copies of your dissertation. Then bind them, for example using the
+comb binder in the Computer Laboratory Library.
+
+\section{Further information}
+
+See the Unix Tools notes at
+
+\url{http://www.cl.cam.ac.uk/teaching/current-1/UnixTools/materials.html}
+
+
+\chapter{Conclusion}
+
+I hope that this rough guide to writing a dissertation is \LaTeX\ has
+been helpful and saved you time.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% the bibliography
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliography{refs}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% the appendices
+\appendix
+
+\chapter{Latex source}
+
+\section{diss.tex}
+{\scriptsize\verbatiminput{diss.tex}}
+
+\section{proposal.tex}
+{\scriptsize\verbatiminput{proposal.tex}}
+
+\chapter{Makefile}
+
+\section{makefile}\label{makefile}
+{\scriptsize\verbatiminput{makefile.txt}}
+
+\section{refs.bib}
+{\scriptsize\verbatiminput{refs.bib}}
+
+
+% \chapter{Project Proposal}
+
+% \input{proposal}
+
+\end{document}

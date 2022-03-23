@@ -10,8 +10,10 @@ path_to_new_pt = "phrase_pair/sparse/phrase_tables/phrase_table_{}"
 
 top_id = np.loadtxt(path_to_pt_top_id)
 
+# ===================================  Load phrase table
 pt = pd.read_csv(path_to_pt_rw, sep='|', names=["source", "target", "scores", "alignment", "count"], quoting=3)
 
+# ===================================  Add a feature 5 to phrase table
 for i in range(1, 11):
     top_hidden = np.loadtxt(path_to_hidden.format(i))
     pt_copy = pt.copy()
@@ -28,6 +30,8 @@ for i in range(1, 11):
 
     pt_copy.to_csv(path_to_new_rw.format(i), sep="|", index=False, header=False)
 
+
+# ===================================  Change sep from "|" to "|||"
 for i in range(1, 11):
     path_to_new_rw_i = path_to_new_rw.format(i)
     path_to_new_pt_i = path_to_new_pt.format(i)

@@ -5,7 +5,7 @@ path_to_pt_rw = "../pt_rw"  # change ||| to |
 path_to_pt_top = "../pt_top"  # top 200000 phrase pairs
 path_to_top_id = "../pt_top_id"
 
-# ===================================  Reformat phrase table to be read by pandas
+# ===================================  Change sep from "|||" to "|"
 with open(path_to_pt, "r") as f, open(path_to_pt_rw, "w") as out:
     for rows in f:
         row = rows.split(" ||| ")
