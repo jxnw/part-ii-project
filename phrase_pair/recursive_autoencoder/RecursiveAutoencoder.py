@@ -17,8 +17,3 @@ class RecursiveAutoencoder(torch.nn.Module):
     def forward(self, x):
         output = self.linear_relu_stack(x)
         return output
-
-# TODO: for each phrase pair in phrase table:
-#           find embedding for s1, s2
-#           encode -> decode -> output s1', s2'
-#           loss = ...
