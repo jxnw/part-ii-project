@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e646ede1-5fa9-4b7f-9bbb-fcab4a1d1ca1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/phrase_pair/R2NN/R2NN.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phrase_pair/R2NN/train_r2nn.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phrase_pair/RNN/RecurrentNN.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phrase_pair/lm_score_train" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phrase_pair/phrases_train" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phrase_pair/RNN/model_rnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/phrase_pair/RNN/train_rnn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phrase_pair/RvNN/RecursiveNN.py" beforeDir="false" afterPath="$PROJECT_DIR$/phrase_pair/R2NN/RecursiveNN.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phrase_pair/RvNN/load_data.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/phrase_pair/mini_what_phrases.txt" beforeDir="false" afterPath="$PROJECT_DIR$/phrase_pair/mini_what_phrases.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phrase_pair/recursive_autoencoder/RecursiveAutoencoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/phrase_pair/recursive_autoencoder/RecursiveAutoencoder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/R2NN/train_r2nn.py" beforeDir="false" afterPath="$PROJECT_DIR$/phrase_pair/R2NN/train_r2nn.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

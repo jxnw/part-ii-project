@@ -5,7 +5,18 @@
 \usepackage{graphicx}  % allows inclusion of PDF, PNG and JPG images
 \usepackage{verbatim}
 \usepackage{docmute}   % only needed to allow inclusion of proposal.tex
-\usepackage{makecell}
+\usepackage{parskip}
+\usepackage{listings}
+\usepackage{todonotes}
+
+\lstset{basicstyle=\ttfamily, breaklines=true}
+
+\graphicspath{ {./images/} }
+
+\newcommand{\quickwordcount}[1]{%
+  \immediate\write18{texcount -1 -sum -merge -q #1.tex output.bbl > #1-words.sum }%
+  \input{#1-words.sum}%
+}
 
 \raggedbottom                           % try to avoid widows and orphans
 \sloppy
@@ -45,14 +56,15 @@ Emmanuel College \\[5mm]
 \chapter*{Proforma}
 
 {\large
-\begin{tabular}{p{4.5cm}p{12cm}}
-Candidate Number:   & \bf -                       \\
-Project Title:      & \bf A Recursive Recurrent Neural Network Decoder for Grammatical Error Correction \\
-Examination:        & \bf Computer Science Tripos -- Part II, May 2022  \\
-Word Count:         & \bf - \footnotemark[1] \\
-Code line count:    & \bf - \\
-Project Originator: & -                    \\
-Supervisor:         & Dr Zheng Yuan, Dr Christopher Bryant                    \\ 
+\begin{tabular}{ll}
+Candidate Number:   & -                       \\
+Project Title:      & A Recursive Recurrent Neural Network \\
+ & Decoder for Grammatical Error Correction \\
+Examination:        & Computer Science Tripos -- Part II, 2022  \\
+Word Count:         & \quickwordcount{diss}\footnotemark[1] \\
+Code line count:    & - \\
+Project Originator: & - \\
+Supervisor:         & Dr Zheng Yuan, Dr Christopher Bryant
 \end{tabular}
 }
 \footnotetext[1]{This word count was computed
@@ -100,12 +112,13 @@ extent for a comparable purpose.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % now for the chapters
+\listoftodos
 
 \pagestyle{headings}
 
 \chapter{Introduction}
 
-This project concerns my implementation of a \textit{recursive recurrent neural network} model (R\textsuperscript{2}NN) proposed by Liu et al. (2014) \cite{r2nn} This is to be integrated in a statistical machine translation (SMT) system to attempt the task of grammatical error correction. [How well have you done?]
+This project concerns my implementation of a \textit{recursive recurrent neural network} model (R\textsuperscript{2}NN) proposed by Liu et al. (2014) \cite{r2nn} This is to be integrated in a statistical machine translation (SMT) system to attempt the task of grammatical error correction. \todo[inline]{How well have you done?}
 
 \section{Motivation}
 
@@ -116,214 +129,166 @@ Grammatical Error Correction (GEC) is the task of producing a grammatically corr
 
 The task of Grammatical Error Correction can be seen as a machine translation process, where the input is a text which may contain grammatical errors, and the output is an error-free text. This project uses a statistical machine translation (SMT) approach to solve GEC.
 
-\noindent
 A recursive recurrent neural network (R\textsuperscript{2}NN) was proposed by Liu et al. (2014) \cite{r2nn} for SMT. The goal of this project is to implement the proposed model to be used for GEC. The model should aim to correct all types of errors, namely grammatical, lexical, and orthographical errors. Its performance will be evaluated against a baseline SMT system, Moses\cite{moses}.
-
-\subsection{SMT system}
-
-A typical SMT system consists of four main components: The language model (LM), the translation model (TM), the reordering model and the decoder (Yuan, 2017) \cite{yuan2017phd}. The LM computes the probability of a given sequence being valid. The TM builds a translation table which contains mappings of words/phrases between source and target corpora. The reordering model learns about phrase reordering of translation. The decoder finds a translation candidate who is most likely to be the translation of the source sentence. In the task of GEC, this would be the most probable correction to the original erroneous sentence.
-
-\noindent
-The Moses baseline system uses KenLM as the language model. For the translation model, it uses GIZA++ to obtain a word alignment model. The model should be trained to produce a phrase table and associated scores. Reordering tables are also created during this process. Eventually, the Moses decoder will find the best translation candidate given input based on the scores it calculated in previous stages.
-
-\subsection{Recurrent Neural Network}
-
-\subsection{Recursive Neural Network}
 
 
 \section{Related Work}
-
-\subsection{Moses}
-
-Moses is an open-source toolkit for SMT. It has been used to build a GEC system (Yuan and Felice, 2013) \cite{yuan-felice-2013-constrained},
-
-
+-
 
 \chapter{Preparation}
 
-\section{Requirement Analysis}
-
 \section{Starting Point}
 
-\section{Method and Tools}
+This project is based on the idea presented in the paper \textit{A Recursive Recurrent Neural Network for Statistical Machine Translation} \cite{r2nn}. An R\textsuperscript{2}NN model was proposed, but the implementation details are not given in the paper.
 
-\section{Dataset}
+The Part IB Computer Science Tripos course Artificial Intelligence\footnote{https://www.cl.cam.ac.uk/teaching/2021/ArtInt/} gives an introduction to neural networks and explains how forwarding and backpropagation works. Prior to this project I did not have any coding experience with neural networks. I have found it useful to follow the coding examples on PyTorch\footnote{https://pytorch.org/tutorials/} website.
 
+An example SMT system is available on Moses\footnote{https://www.statmt.org/moses/?n=Moses.Baseline} website. It provides a detailed tutorial on how to install Moses, how to prepare corpus and how to train the SMT.
+
+
+\section{Theory}
+
+\subsection{SMT system}
+A typical SMT system consists of four main components: The language model (LM), the translation model (TM), the reordering model and the decoder\cite{yuan2017phd}. The LM computes the probability of a given sequence being valid. The TM builds a translation table which contains mappings of words/phrases between source and target corpora. The reordering model learns about phrase reordering of translation. The decoder finds a translation candidate who is most likely to be the translation of the source sentence. In the task of GEC, this would be the most probable correction to the original erroneous sentence.
+
+\todo[inline]{Level of detail?}
+
+
+\subsection{Moses SMT}
+The Moses baseline system uses KenLM as the language model. For the translation model, it uses GIZA++ to obtain a word alignment model. The model should be trained to produce a phrase table and associated scores. Reordering tables are also created during this process. Eventually, the Moses decoder will find the best translation candidate given input based on the scores it calculated in previous stages.
+
+\subsection{Feedforward Neural Network}
+A feedforward neural network consists of three parts: an input layer, one or more hidden layers, and an output layer. In a feedforward neural network, data only flows in one direction (forward) from input to output. Figure \ref{fig:fnn} shows an example of a feedforward neural network with one hidden layer.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.3\textwidth]{images/fnn.png}
+\caption{Example of a feedforward neural network}
+\label{fig:fnn}
+\end{figure}
+
+\subsection{Recurrent Neural Network (RNN)}
+Recurrent neural networks are usually used to deal with sequences. They allow access to the input data as well as past data to compute the next state. As shown in Figure \ref{fig:rnn}, the hidden layer $h_t$ is computed using both input $x_t$ at time $t$ and the hidden state $h_{t-1}$ which contains the history information from time 0 to $t-1$. For each timestep $t$, the hidden state can be expressed as:
+\[ h_t = Wx_t + Uh_{t-1} \]
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.4\textwidth]{images/rnn.png}
+\caption{Example of a recurrent neural network (RNN)}
+\label{fig:rnn}
+\end{figure}
+
+
+\subsection{Recursive Neural Network (RvNN)}
+A recursive neural network has a tree-like structure. Figure \ref{fig:rvnn} illustrates an example of a basic RvNN architecture. The parent node representation is computed from its child nodes' representation as follows:
+\[ p_{n, n+1} = f(W[x_n; x_{n+1}]) \]
+where $f$ is the activation function. The same weight matrix $W$ will be applied recursively over the input.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.6\textwidth]{images/rvnn.png}
+\caption{Example of a recursive neural network (RvNN)}
+\label{fig:rvnn}
+\end{figure}
+
+
+\subsection{\texorpdfstring{Recursive Recurrent Neural Network (R\textsuperscript{2}NN)}{Recursive Recurrent Neural Network (R2NN)}}
+The R\textsuperscript{2}NN proposed by Liu et al.\cite{r2nn} combines the features of RvNN and RNN. It has a tree-like structure similar to RvNN, with recurrent vectors added to integrate global information. As shown in Figure \ref{fig:r2nn}, $s^{[l, m]}$ and $s^{[m, n]}$ is the representation of child nodes $[l, m]$ and $[m, n]$. The recurrent input vectors, $x^{[l, m]}$ and $x^{[m, n]}$ are added to the two child nodes respectively. They encode the global information, such as language model scores and distortion model scores. A third recurrent input vector $x^{[l, n]}$ is added to the parent node $[l, n]$. The parent node representation is computed as
+\[ s_j^{[l, n]} = f(\sum_{i} \hat{x}_i^{[l, n]}w_{ji}) \]
+where $\hat{x}$ is the concatenation of vectors $[x^{[l, m]}; s^{[l, m]}; x^{[m, n]}; s^{[m, n]}]$, and $f$ is the $HTanh$ function. The output, $y^{[l, n]}$, is computed as
+\[ y^{[l, n]} = \sum_{j} ([s^{[l, n]}; x^{[l, n]}])_{j}v_j \]
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.6\textwidth]{images/r2nn.png}
+\caption{Recursive recurrent neural network (Liu et al., 2014, p.1494)}
+\label{fig:r2nn}
+\end{figure}
+
+
+\section{Requirement Analysis}
+
+Based on the Project Structure section from my project proposal, the following requirements have been identified:
+
+\textbf{Data preprocessing}
+\begin{itemize}
+    \item Data should be prepared in a form that is accepted by Moses SMT and R\textsuperscript{2}NN SMT
+    \item Preprocessing should be done carefully to avoid accidentally correcting some of the grammatical errors 
+    
+    \begin{itemize}
+        \item E.g. capitalisation errors may go undetected if all sentences are lowercased during data preprocessing
+    \end{itemize}
+\end{itemize}
+
+\textbf{Moses SMT for GEC}
+\begin{itemize}
+    \item A language model should be trained to model the probability of a given sentence being valid
+    \item A translation model should be trained to construct a phrase translation table
+    \item A reordering model should be trained to learn the reordering of phrases
+    \item With the above three models and Moses decoder, a complete Moses SMT system should be built
+\end{itemize}
+
+\textbf{R\textsuperscript{2}NN SMT for GEC}
+
+Following the R\textsuperscript{2}NN paper by Liu et al.\cite{r2nn},
+\begin{itemize}
+    \item Phrase pair embeddings (PPE) should be learned by building a one-hidden-layer neural network and a recurrent neural network
+    \item A recursive recurrent neural network (R\textsuperscript{2}NN) should be built and used as a decoder
+\end{itemize}
+
+\textbf{Evaluation}
+\begin{itemize}
+    \item The performance of both SMT systems should be evaluated using F0.5 scores
+\end{itemize}
+
+\section{Choice of Tools}
+
+\subsection{Programming Language}
+
+Python is chosen to be the main programming language as it provides many libraries that are commonly used for natural language processing. For this project I will be using \texttt{python 3.8} and PyCharm as my IDE.
+
+\subsection{Libraries}
+\textbf{PyTorch} \\
+The \texttt{PyTorch}\footnote{https://pytorch.org/} library is one of the most popular machine learning frameworks. There are other similar libraries (such as \texttt{TensorFlow}) but I find \texttt{PyTorch} tutorials are easier to follow.
+
+\textbf{NumPy} \\
+My project is likely to involve statistical processing. I would be using the \texttt{NumPy}\footnote{https://numpy.org/} library for this purpose.
+
+\textbf{pandas} \\
+\texttt{pandas}\footnote{https://pandas.pydata.org/} is a powerful library for processing tabular data. This would be used to manipulate phrase tables in my project.
+
+\subsection{Dataset}
+The dataset introduced in BEA 2019 Shared Task\cite{bryant-etal-2019-bea} will be used in this project. I chose the two corpora (FCE v2.1 and W\&I+LOCNESS v2.1) which are immediately downloadable from the website\footnote{https://www.cl.cam.ac.uk/research/nl/bea2019st/\#data} to start with. The corpora have been standardised to be easily evaluated by ERRANT\cite{bryant-etal-2017-automatic,felice-etal-2016-automatic}. ERRANT is a toolkit used to annotate parallel data and compare hypothesis against reference to produce various evaluation metrics including F0.5 score. I may request other corpora as an extension of my project.
+
+\subsection{Version Control and Backup}
+Git will be used for version control. The entire project, including all the written code and my dissertation, will be pushed to GitHub regularly.
 
 \chapter{Implementation}
 
-\section{Verbatim text}
+\section{Repository Overview}
+-
 
-Verbatim text can be included using \verb|\begin{verbatim}| and
-\verb|\end{verbatim}|. I normally use a slightly smaller font and
-often squeeze the lines a little closer together, as in:
+\section{Moses SMT}
+-
 
-{\renewcommand{\baselinestretch}{0.8}\small
-\begin{verbatim}
-GET "libhdr"
- 
-GLOBAL { count:200; all  }
- 
-LET try(ld, row, rd) BE TEST row=all
-                        THEN count := count + 1
-                        ELSE { LET poss = all & ~(ld | row | rd)
-                               UNTIL poss=0 DO
-                               { LET p = poss & -poss
-                                 poss := poss - p
-                                 try(ld+p << 1, row+p, rd+p >> 1)
-                               }
-                             }
-LET start() = VALOF
-{ all := 1
-  FOR i = 1 TO 12 DO
-  { count := 0
-    try(0, 0, 0)
-    writef("Number of solutions to %i2-queens is %i5*n", i, count)
-    all := 2*all + 1
-  }
-  RESULTIS 0
-}
-\end{verbatim}
-}
+\subsection{Pre-processing}
+-
 
-\section{Tables}
+\subsection{Language Model}
+-
 
-\begin{samepage}
-Here is a simple example\footnote{A footnote} of a table.
+\section{\texorpdfstring{R\textsuperscript{2}NN}{R2NN} SMT}
+-
 
-\begin{center}
-\begin{tabular}{l|c|r}
-Left      & Centred & Right \\
-Justified &         & Justified \\[3mm]
-%\hline\\%[-2mm]
-First     & A       & XXX \\
-Second    & AA      & XX  \\
-Last      & AAA     & X   \\
-\end{tabular}
-\end{center}
+\subsection{Pre-processing}
+-
 
-\noindent
-There is another example table in the proforma.
-\end{samepage}
-
-\section{Simple diagrams}
-
-Simple diagrams can be written directly in \LaTeX.  For example, see
-figure~\ref{latexpic1} on page~\pageref{latexpic1} and see
-figure~\ref{latexpic2} on page~\pageref{latexpic2}.
-
-\begin{figure}
-\setlength{\unitlength}{1mm}
-\begin{center}
-\begin{picture}(125,100)
-\put(0,80){\framebox(50,10){AAA}}
-\put(0,60){\framebox(50,10){BBB}}
-\put(0,40){\framebox(50,10){CCC}}
-\put(0,20){\framebox(50,10){DDD}}
-\put(0,00){\framebox(50,10){EEE}}
-
-\put(75,80){\framebox(50,10){XXX}}
-\put(75,60){\framebox(50,10){YYY}}
-\put(75,40){\framebox(50,10){ZZZ}}
-
-\put(25,80){\vector(0,-1){10}}
-\put(25,60){\vector(0,-1){10}}
-\put(25,50){\vector(0,1){10}}
-\put(25,40){\vector(0,-1){10}}
-\put(25,20){\vector(0,-1){10}}
-
-\put(100,80){\vector(0,-1){10}}
-\put(100,70){\vector(0,1){10}}
-\put(100,60){\vector(0,-1){10}}
-\put(100,50){\vector(0,1){10}}
-
-\put(50,65){\vector(1,0){25}}
-\put(75,65){\vector(-1,0){25}}
-\end{picture}
-\end{center}
-\caption{A picture composed of boxes and vectors.}
-\label{latexpic1}
-\end{figure}
-
-\begin{figure}
-\setlength{\unitlength}{1mm}
-\begin{center}
-
-\begin{picture}(100,70)
-\put(47,65){\circle{10}}
-\put(45,64){abc}
-
-\put(37,45){\circle{10}}
-\put(37,51){\line(1,1){7}}
-\put(35,44){def}
-
-\put(57,25){\circle{10}}
-\put(57,31){\line(-1,3){9}}
-\put(57,31){\line(-3,2){15}}
-\put(55,24){ghi}
-
-\put(32,0){\framebox(10,10){A}}
-\put(52,0){\framebox(10,10){B}}
-\put(37,12){\line(0,1){26}}
-\put(37,12){\line(2,1){15}}
-\put(57,12){\line(0,2){6}}
-\end{picture}
-
-\end{center}
-\caption{A diagram composed of circles, lines and boxes.}
-\label{latexpic2}
-\end{figure}
-
-
-
-\section{Adding more complicated graphics}
-
-The use of \LaTeX\ format can be tedious and it is often better to use
-encapsulated postscript (EPS) or PDF to represent complicated graphics.
-Figure~\ref{epsfig} and~\ref{xfig} on page \pageref{xfig} are
-examples. The second figure was drawn using \texttt{xfig} and exported in
-{\tt.eps} format. This is my recommended way of drawing all diagrams.
-
-
-\begin{figure}[tbh]
-\centerline{\includegraphics{figs/cuarms.pdf}}
-\caption{Example figure using encapsulated postscript}
-\label{epsfig}
-\end{figure}
-
-\begin{figure}[tbh]
-\vspace{4in}
-\caption{Example figure where a picture can be pasted in}
-\label{pastedfig}
-\end{figure}
-
-
-\begin{figure}[tbh]
-\centerline{\includegraphics{figs/diagram.pdf}}
-\caption{Example diagram drawn using \texttt{xfig}}
-\label{xfig}
-\end{figure}
-
+\subsection{Phrase Pair Embedding}
 
 \chapter{Evaluation}
 
-\section{Printing and binding}
-
-Use a ``duplex'' laser printer that can print on both sides to print
-two copies of your dissertation. Then bind them, for example using the
-comb binder in the Computer Laboratory Library.
-
-\section{Further information}
-
-See the Unix Tools notes at
-
-\url{http://www.cl.cam.ac.uk/teaching/current-1/UnixTools/materials.html}
-
-
 \chapter{Conclusion}
-
-I hope that this rough guide to writing a dissertation is \LaTeX\ has
-been helpful and saved you time.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -335,21 +300,20 @@ been helpful and saved you time.
 % the appendices
 \appendix
 
-\chapter{Latex source}
+\chapter{Project Proposal}
 
-\section{diss.tex}
-{\scriptsize\verbatiminput{diss.tex}}
+% \chapter{Latex source}
 
-\section{proposal.tex}
-{\scriptsize\verbatiminput{proposal.tex}}
+% \section{diss.tex}
+% {\scriptsize\lstinputlisting[language=TeX]{diss.tex}}
 
-\chapter{Makefile}
+% \section{proposal.tex}
+% {\scriptsize\verbatiminput{proposal.tex}}
 
-\section{makefile}\label{makefile}
-{\scriptsize\verbatiminput{makefile.txt}}
+% \chapter{Makefile}
 
-\section{refs.bib}
-{\scriptsize\verbatiminput{refs.bib}}
+% \section{refs.bib}
+% {\scriptsize\verbatiminput{refs.bib}}
 
 
 % \chapter{Project Proposal}

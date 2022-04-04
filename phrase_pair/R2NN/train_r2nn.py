@@ -78,6 +78,7 @@ def process_file(path_to_phrases, path_to_lm_file):
     return phrase_pairs, lm_scores
 
 
+# TODO: move get_ppe, get_rec to R2NN?
 def get_ppe(source_phrase, target_phrase):
     # TODO: load rnn model
     # return ppe of a given phrase pair
