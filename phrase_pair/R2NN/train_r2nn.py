@@ -5,9 +5,9 @@ from torch.utils.data import Dataset, DataLoader
 from R2NN import R2NN, TreeNode
 
 
-path_to_phrase_used = "phrase_pair/phrases_train"
-# path_to_phrase_used = "phrase_pair/mini_what_phrases.txt"
-# path_to_phrase_used = "phrase_pair/what_phrases.txt"
+# path_to_phrase_used = "phrase_pair/phrases_train"
+path_to_phrase_used = "phrase_pair/mini_phrases_train.txt"
+
 path_to_lm_score = "phrase_pair/lm_score_train"
 path_to_ppe_matrix = "phrase_pair/ppe_matrix.npy"
 path_to_pt_top = "phrase_pair/pt_top"
@@ -168,7 +168,7 @@ learning_rate = 1e-3
 batch_size = 5
 epoch = 10
 
-rvnn = R2NN(20, 2)
+rvnn = R2NN(21, 2)
 loss_fn = torch.nn.MSELoss()
 optimizer = torch.optim.SGD(rvnn.parameters(), lr=learning_rate)
 

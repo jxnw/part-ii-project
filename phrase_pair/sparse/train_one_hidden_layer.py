@@ -89,8 +89,6 @@ def train_loop(dataloader, model, loss_fn, optimizer):
     return preds
 
 
-# set model to train mode
-model.train()
 for epoch_id in range(epoch):
     print(f"Epoch {epoch_id + 1}\n-------------------------------")
     confidence_score = train_loop(phrase_pair_loader, model, loss_fn, optimizer)

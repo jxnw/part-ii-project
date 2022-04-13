@@ -1,16 +1,12 @@
 import fasttext
 import numpy as np
 import torch
-from torch.utils.data import Dataset, DataLoader
-from RecurrentNN import RecurrentNN
+from torch.utils.data import Dataset, DataLoader, Subset
+from recurrent_nn import RecurrentNN
 
 path_to_or_train = "../fce.train.gold.bea19.clean.or"
 path_to_co_train = "../fce.train.gold.bea19.clean.co"
 path_to_or_co_train = "../aligned.grow-diag-final-and"
-
-# path_to_or_train = "../mini_or"
-# path_to_co_train = "../mini_co"
-# path_to_or_co_train = "../mini_or_co"
 path_to_word_vector = "cc.en.50.bin"
 
 
@@ -24,19 +20,43 @@ class WordDataset(Dataset):
         return len(self.align_prev)
 
     def __getitem__(self, idx):
-        return self.align_prev[idx].unsqueeze(0), self.expect[idx]
+        return self.align_prev[idx], self.expect[idx]
 
 
-def sentence_to_np(or_list, co_list, align_list):
+def count_word(file):
+    with open(file, "r") as f:
+        return len(f.read().split())
+
+
+def word_to_tensor(word):
+    word_np = ft[word] if word is not None else np.zeros(50)
+    return torch.tensor(word_np)
+
+
+def build_dictionary(file):
+    with open(file, "r") as f:
+        keys = sorted(set(f.read().split()))
+        word_dict = dict((word, index) for index, word in enumerate(keys))
+        index_dict = dict((index, word) for index, word in enumerate(keys))
+        return word_dict, index_dict
+
+
+def output_tensor(word):
+    if word in word_dictionary:
+        return torch.tensor([word_dictionary[word]], dtype=torch.float32)
+    else:
+        return torch.tensor([-1], dtype=torch.float32)
+
+
+def sentence_to_tensor(or_list, co_list, align_list):
     len_sentence = len(or_list)
+    aligned_tensor = torch.zeros((len_sentence, 50), dtype=torch.float32)
+    prev_tensor = torch.zeros((len_sentence, 50), dtype=torch.float32)
+    expected_tensor = torch.zeros((len_sentence, 1), dtype=torch.float32)
 
-    aligned_words = np.zeros((len_sentence, 50), dtype=float)
-    prev_words = np.zeros((len_sentence, 50), dtype=float)
-    expected_words = np.zeros((len_sentence, 50), dtype=float)
-
-    # convert alignment to a map where alignment_map[or] = co
+    # create an alignment map where alignment_map[or] = co
     last_item = align_list[-1].split("-")
-    alignment_map = [-1] * (max(int(last_item[0]), int(last_item[1])) + 5)
+    alignment_map = [-1] * (max(int(last_item[0]), int(last_item[1])) + 7)
     for item in align_list:
         item_list = item.split("-")
         alignment_map[int(item_list[0])] = int(item_list[1])
@@ -47,93 +67,104 @@ def sentence_to_np(or_list, co_list, align_list):
         prev_word = or_list[or_pos - 1] if 0 < or_pos < len(or_list) else None
         expected_word = source
 
-        aligned_words[or_pos] = word_to_np(aligned_word)
-        prev_words[or_pos] = word_to_np(prev_word)
-        expected_words[or_pos] = word_to_np(expected_word)
+        aligned_tensor[or_pos] = word_to_tensor(aligned_word)
+        prev_tensor[or_pos] = word_to_tensor(prev_word)
+        expected_tensor[or_pos] = output_tensor(expected_word)
 
-    return aligned_words, prev_words, expected_words, len_sentence
-
-
-def word_to_np(word):
-    return ft[word] if word is not None else np.zeros(50)
+    return aligned_tensor, prev_tensor, expected_tensor, len_sentence
 
 
-def count_word(file):
-    with open(file, "r") as f:
-        return len(f.read().split())
-
-
-def preprocess_file(or_co, original_file, corrected_file):
+def process_file(or_co, original_file, corrected_file):
     word_total_count = count_word(original_file)
-    aligned_words = np.zeros((word_total_count, 50), dtype=float)
-    prev_words = np.zeros((word_total_count, 50), dtype=float)
-    expected_words = np.zeros((word_total_count, 50), dtype=float)
+
+    aligned_words = torch.zeros((word_total_count, 50), dtype=torch.float32)
+    prev_words = torch.zeros((word_total_count, 50), dtype=torch.float32)
+    expected_words = torch.zeros((word_total_count, 1), dtype=torch.long)
 
     with open(or_co, "r") as or_co, \
             open(original_file, "r") as or_file, \
             open(corrected_file, "r") as co_file:
         word_count = 0
         for alignment in or_co:
-            original = or_file.readline()
-            correct = co_file.readline()
-
-            original_list = original.split()
-            correct_list = correct.split()
+            # Process one sentence
+            original_list = or_file.readline().split()
+            correct_list = co_file.readline().split()
             alignment_list = alignment.split()
+            aligned, prev, expected, len_sentence = sentence_to_tensor(original_list, correct_list, alignment_list)
 
-            aligned_np, prev_np, expected_np, length = sentence_to_np(original_list, correct_list, alignment_list)
+            aligned_words[word_count:word_count + len_sentence, :] = aligned
+            prev_words[word_count:word_count + len_sentence, :] = prev
+            expected_words[word_count:word_count + len_sentence, :] = expected
 
-            aligned_words[word_count:word_count + length, 0:50] = aligned_np
-            prev_words[word_count:word_count + length, 0:50] = prev_np
-            expected_words[word_count:word_count + length, 0:50] = expected_np
+            word_count += len_sentence
 
-            word_count += length
-
-    aligned_tensor = torch.from_numpy(aligned_words)
-    prev_tensor = torch.from_numpy(prev_words)
-    output_tensor = torch.from_numpy(expected_words)
-    aligned_prev = torch.cat((aligned_tensor, prev_tensor), 1)
-
-    return aligned_prev, output_tensor
+    return torch.cat((aligned_words, prev_words), 1), expected_words
 
 
-# load fastText model
+def word_from_output(output):
+    top_n, top_i = torch.topk(output, 1)
+    word_i = top_i[0].item()
+    return index_dictionary[word_i], word_i
+
+
 ft = fasttext.load_model(path_to_word_vector)
+word_dictionary, index_dictionary = build_dictionary(path_to_or_train)
+n_words = len(word_dictionary)
 
-train_input_tensor, train_expected_tensor = preprocess_file(path_to_or_co_train, path_to_or_train, path_to_co_train)
+train_input_tensor, train_expected_tensor = process_file(path_to_or_co_train, path_to_or_train, path_to_co_train)
+train_word_dataset = WordDataset(train_input_tensor, torch.flatten(train_expected_tensor))
+random_indices = np.random.choice(np.arange(0, len(train_input_tensor)), 50000)
+train_word_subset = Subset(train_word_dataset, random_indices)
 
-train_word_dataset = WordDataset(train_input_tensor, train_expected_tensor)
-train_word_loader = DataLoader(train_word_dataset, batch_size=64)
-
+train_word_loader = DataLoader(train_word_subset, shuffle=True)
 
 # ============================================ model training
 # hyper-parameters
 learning_rate = 0.005
-n_epochs = 10
+n_epochs = 3
 
 # create a model
-model = RecurrentNN(100, 20, 50)
-loss_fn = torch.nn.MSELoss()
-optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
+rnn = RecurrentNN(100, 100, n_words)
+loss_fn = torch.nn.NLLLoss()
+optimizer = torch.optim.SGD(rnn.parameters(), lr=learning_rate)
 
 
-def train_loop(dataloader, model, loss_fn, optimizer):
+def train(input_tensor, target_tensor):
+    hidden = rnn.init_hidden()
+    rnn.zero_grad()
+    optimizer.zero_grad()
+
+    output, hidden = rnn(input_tensor, hidden)
+    loss = loss_fn(output, target_tensor)
+    loss.backward()
+
+    optimizer.step()
+
+    return output, loss.item()
+
+
+def train_loop(dataloader):
     size = len(dataloader.dataset)
-    for batch, (x, y) in enumerate(dataloader):
-        # Compute prediction and loss
-        output, hidden = model(x.float())
-        loss = loss_fn(output, y.float())
 
-        # Backpropagation
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
+    for batch, (x, y) in enumerate(dataloader):
+        output, loss = train(x, y)
 
         if batch % 1000 == 0:
-            loss, current = loss.item(), batch * len(x)
+            current = batch * len(x)
             print(f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]")
 
 
 for t in range(n_epochs):
     print(f"Epoch {t+1}\n-------------------------------")
-    train_loop(train_word_loader, model, loss_fn, optimizer)
+    train_loop(train_word_loader)
+
+# torch.save({
+#     'epoch': n_epochs,
+#     'model_state_dict': rnn.state_dict(),
+#     'optimizer_state_dict': optimizer.state_dict()
+# }, "rnn_state/model_state_rnn.pth")
+
+
+# ============================================ calculate ppe
+# output, _ = rnn(input_tensor, hidden)
+# print(-output[0][target_tensor.item()])
