@@ -28,10 +28,10 @@ def word_to_tensor(word):
 def word_prob_from_output(output, word):
     if word in word_dictionary:
         word_index = word_dictionary[word]
-        prob = -output[0][word_index]
+        p = -output[0][word_index]
     else:
-        prob = 0
-    return prob
+        p = 0
+    return p
 
 
 word_dictionary, index_dictionary = build_dictionary(path_to_or_train)

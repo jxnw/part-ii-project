@@ -1,9 +1,7 @@
 import math
-import numpy as np
 import torch
 from torch.utils.data import Dataset, DataLoader
 from R2NN import R2NN, TreeNode
-
 
 path_to_phrase_used = "phrase_pair/phrases_train"
 
@@ -66,7 +64,7 @@ def build_tree(span, model):
 
 def train_loop(dataloader, model, loss_fn, optimizer):
     size = len(dataloader.dataset)
-    preds = np.zeros(size)
+
     for batch, (x, y) in enumerate(dataloader):
         y = y.to(torch.float32)
 
@@ -84,13 +82,15 @@ def train_loop(dataloader, model, loss_fn, optimizer):
         optimizer.step()
 
         if batch % batch_size == 0:
+            print(score)
             loss = loss.item()
             print(f"loss: {loss:>7f}  [{batch:>5d}/{size:>5d}]")
-    return preds
 
 
 def local_loss(output, target):
-    return max(0, 1-target+output)
+    if 1 - target + output < 0:
+        return torch.tensor(0., requires_grad=True)
+    return 1 - target + output
 
 
 filtered_sentences, filtered_scores = process_phrases_file(path_to_phrase_used)
@@ -98,14 +98,20 @@ sentence_dataset = SentenceDataset(filtered_sentences, filtered_scores)
 sentence_loader = DataLoader(sentence_dataset)
 
 # Hyper-parameters
-learning_rate = 0.005
-batch_size = 10
-epoch = 5
+learning_rate = 0.01
+batch_size = 100
+epoch = 1
 
 r2nn = R2NN(21, 2)
+loss_fn = torch.nn.MSELoss()
 optimizer = torch.optim.SGD(r2nn.parameters(), lr=learning_rate)
 
 for epoch_id in range(epoch):
     print(f"Epoch {epoch_id + 1}\n-------------------------------")
-    confidence_score = train_loop(sentence_loader, r2nn, local_loss, optimizer)
+    train_loop(sentence_loader, r2nn, local_loss, optimizer)
 
+# torch.save({
+#     'epoch': epoch,
+#     'model_state_dict': r2nn.state_dict(),
+#     'optimizer_state_dict': optimizer.state_dict()
+# }, "phrase_pair/R2NN/r2nn_state/model_state_r2nn.pth")

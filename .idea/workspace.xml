@@ -2,18 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e646ede1-5fa9-4b7f-9bbb-fcab4a1d1ca1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/phrase_pair/R2NN/obtain_pt_target.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phrase_pair/R2NN/save_top_lm.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phrase_pair/lm_total_scores" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phrase_pair/pt_top_lm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phrase_pair/pt_top_target" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phrase_pair/R2NN/r2nn_state/model_state_r2nn.pth" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phrase_pair/R2NN/test_r2nn.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/phrase_pair/R2NN/R2NN.py" beforeDir="false" afterPath="$PROJECT_DIR$/phrase_pair/R2NN/R2NN.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phrase_pair/R2NN/new_R2NN.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/phrase_pair/R2NN/new_train_r2nn.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/phrase_pair/R2NN/obtain_lm_top_phrases.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/phrase_pair/R2NN/train_r2nn.py" beforeDir="false" afterPath="$PROJECT_DIR$/phrase_pair/R2NN/train_r2nn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phrase_pair/lm_score_train" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/RNN/save_ppe_rnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/phrase_pair/RNN/save_ppe_rnn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/RNN/train_rnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/phrase_pair/RNN/train_rnn.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,5 +225,16 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/phrase_pair/RNN/train_rnn.py</url>
+          <line>140</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

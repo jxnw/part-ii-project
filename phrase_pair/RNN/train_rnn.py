@@ -163,8 +163,3 @@ for t in range(n_epochs):
 #     'model_state_dict': rnn.state_dict(),
 #     'optimizer_state_dict': optimizer.state_dict()
 # }, "rnn_state/model_state_rnn.pth")
-
-
-# ============================================ calculate ppe
-# output, _ = rnn(input_tensor, hidden)
-# print(-output[0][target_tensor.item()])

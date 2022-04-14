@@ -9,6 +9,7 @@ class R2NN(torch.nn.Module):
         self.input_size = ppe_size + rec_size
         self.W = torch.nn.Linear(self.input_size * 2, ppe_size, dtype=torch.float32)
         self.V = torch.nn.Linear(self.input_size, 1, dtype=torch.float32)
+        self.relu = torch.nn.ReLU()
 
     def forward(self, node):
         left_node_vector = torch.zeros([self.input_size], dtype=torch.float32)
