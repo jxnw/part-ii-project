@@ -2,27 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e646ede1-5fa9-4b7f-9bbb-fcab4a1d1ca1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/phrase_pair/R2NN/get_ppe.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phrase_pair/R2NN/new_R2NN.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phrase_pair/R2NN/new_train_r2nn.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phrase_pair/R2NN/process_files.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phrase_pair/RNN/rnn_state/model_state_rnn.pth" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phrase_pair/RNN/save_ppe_rnn.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phrase_pair/mini_phrases_train.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phrase_pair/ppe_rnn.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phrase_pair/ppe_sparse.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phrase_pair/pt_top_old" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phrase_pair/R2NN/obtain_pt_target.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phrase_pair/R2NN/save_top_lm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phrase_pair/lm_total_scores" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phrase_pair/pt_top_lm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phrase_pair/pt_top_target" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phrase_pair/R2NN/RecursiveNN.py" beforeDir="false" afterPath="$PROJECT_DIR$/phrase_pair/R2NN/recursive_nn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/R2NN/R2NN.py" beforeDir="false" afterPath="$PROJECT_DIR$/phrase_pair/R2NN/R2NN.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/R2NN/new_R2NN.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/R2NN/new_train_r2nn.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/R2NN/obtain_lm_top_phrases.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/phrase_pair/R2NN/train_r2nn.py" beforeDir="false" afterPath="$PROJECT_DIR$/phrase_pair/R2NN/train_r2nn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phrase_pair/RNN/RecurrentNN.py" beforeDir="false" afterPath="$PROJECT_DIR$/phrase_pair/RNN/recurrent_nn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phrase_pair/RNN/train_rnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/phrase_pair/RNN/train_rnn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phrase_pair/mini_what_phrases.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/phrase_pair/ppe_matrix.npy" beforeDir="false" afterPath="$PROJECT_DIR$/phrase_pair/ppe_matrix.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phrase_pair/pt_top" beforeDir="false" afterPath="$PROJECT_DIR$/phrase_pair/pt_top" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/load_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/phrase_pair/sparse/save_ppe_sparse.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/train_one_hidden_layer.py" beforeDir="false" afterPath="$PROJECT_DIR$/phrase_pair/sparse/train_one_hidden_layer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phrase_pair/what_phrases.txt" beforeDir="false" afterPath="$PROJECT_DIR$/phrase_pair/phrases_test.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/lm_score_train" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +61,49 @@
       <recent name="$PROJECT_DIR$/phrase_pair" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.obtain_lm_top_phrases">
+  <component name="RunManager" selected="Python.new_train_r2nn">
+    <configuration name="R2NN" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="part-ii-project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/phrase_pair/R2NN/R2NN.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="experi" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="part-ii-project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/phrase_pair/R2NN" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/phrase_pair/R2NN/experi.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="get_ppe" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="part-ii-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -92,7 +125,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="new_train_r2nn" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="obtain_pt_target" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="part-ii-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -104,7 +137,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/phrase_pair/R2NN/new_train_r2nn.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/phrase_pair/R2NN/obtain_pt_target.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -113,7 +146,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="new_train_rnn" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="save_top_lm" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="part-ii-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -121,11 +154,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/phrase_pair/RNN" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/phrase_pair/RNN/new_train_rnn.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/phrase_pair/R2NN/save_top_lm.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -134,7 +167,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="obtain_lm_top_phrases" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+    <configuration name="train_r2nn" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="part-ii-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -146,49 +179,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/phrase_pair/R2NN/obtain_lm_top_phrases.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="save_ppe_rnn" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="part-ii-project" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/phrase_pair/RNN" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/phrase_pair/RNN/save_ppe_rnn.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="train_rnn" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="part-ii-project" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/phrase_pair/RNN" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/phrase_pair/RNN/train_rnn.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/phrase_pair/R2NN/train_r2nn.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -198,20 +189,20 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.train_rnn" />
-      <item itemvalue="Python.save_ppe_rnn" />
-      <item itemvalue="Python.new_train_rnn" />
       <item itemvalue="Python.get_ppe" />
       <item itemvalue="Python.new_train_r2nn" />
-      <item itemvalue="Python.obtain_lm_top_phrases" />
+      <item itemvalue="Python.obtain_pt_target" />
+      <item itemvalue="Python.save_top_lm" />
+      <item itemvalue="Python.new_R2NN" />
+      <item itemvalue="Python.experi" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.new_train_r2nn" />
+        <item itemvalue="Python.experi" />
+        <item itemvalue="Python.new_R2NN" />
+        <item itemvalue="Python.save_top_lm" />
         <item itemvalue="Python.get_ppe" />
-        <item itemvalue="Python.save_ppe_rnn" />
-        <item itemvalue="Python.new_train_rnn" />
-        <item itemvalue="Python.train_rnn" />
       </list>
     </recent_temporary>
   </component>
