@@ -2,15 +2,102 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e646ede1-5fa9-4b7f-9bbb-fcab4a1d1ca1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/phrase_pair/fce_test_translated" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phrase_pair/mini_test_or" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phrase_pair/mini_test_translated" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/evaluation/moses_baseline/errant_eval_moses" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/evaluation/moses_baseline/fce.test.moses.translated" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/evaluation/moses_baseline/fce.test.moses.translated.m2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/evaluation/r2nn/errant_eval_r2nn" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/evaluation/r2nn/fce.test.r2nn.translated.m2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/corpus/dev/fce.test.gold.bea19.co" beforeDir="false" afterPath="$PROJECT_DIR$/corpus/dev/fce.test.gold.bea19.co" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/corpus/dev/fce.test.gold.bea19.or" beforeDir="false" afterPath="$PROJECT_DIR$/corpus/dev/fce.test.gold.bea19.or" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phrase_pair/R2NN/R2NN.py" beforeDir="false" afterPath="$PROJECT_DIR$/phrase_pair/R2NN/R2NN.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phrase_pair/R2NN/test_r2nn.py" beforeDir="false" afterPath="$PROJECT_DIR$/phrase_pair/R2NN/test_r2nn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phrase_pair/recursive_autoencoder/RecursiveAutoencoder.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/.idea/phrase-pair.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/R2NN/R2NN.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/R2NN/R2NN.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/R2NN/get_ppe.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/R2NN/get_ppe.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/R2NN/obtain_pt_target.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/R2NN/obtain_pt_target.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/R2NN/r2nn_state/model_state_r2nn.pth" beforeDir="false" afterPath="$PROJECT_DIR$/model/R2NN/r2nn_state/model_state_r2nn.pth" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/R2NN/recursive_nn.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/R2NN/recursive_nn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/R2NN/save_top_lm.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/R2NN/save_top_lm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/R2NN/test_r2nn.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/R2NN/test_r2nn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/R2NN/train_r2nn.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/R2NN/train_r2nn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/RNN/recurrent_nn.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/RNN/recurrent_nn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/RNN/rnn_state/model_state_rnn.pth" beforeDir="false" afterPath="$PROJECT_DIR$/model/RNN/rnn_state/model_state_rnn.pth" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/RNN/save_ppe_rnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/RNN/save_ppe_rnn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/RNN/train_rnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/RNN/train_rnn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/aligned.grow-diag-final-and" beforeDir="false" afterPath="$PROJECT_DIR$/model/aligned.grow-diag-final-and" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/fce.train.gold.bea19.clean.co" beforeDir="false" afterPath="$PROJECT_DIR$/model/fce.train.gold.bea19.clean.co" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/fce.train.gold.bea19.clean.or" beforeDir="false" afterPath="$PROJECT_DIR$/model/fce.train.gold.bea19.clean.or" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/fce_test_translated" beforeDir="false" afterPath="$PROJECT_DIR$/evaluation/r2nn/fce.test.r2nn.translated" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/lm_total_scores" beforeDir="false" afterPath="$PROJECT_DIR$/model/lm_total_scores" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/mini_co" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/mini_or" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/mini_or_co" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/mini_phrases_train.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/mini_test_or" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/mini_test_translated" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/phrase_pair_id" beforeDir="false" afterPath="$PROJECT_DIR$/model/phrase_pair_id" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/phrases_test.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/phrases_train" beforeDir="false" afterPath="$PROJECT_DIR$/model/phrases_train" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/ppe_matrix.npy" beforeDir="false" afterPath="$PROJECT_DIR$/model/ppe_matrix.npy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/ppe_rnn.npy" beforeDir="false" afterPath="$PROJECT_DIR$/model/ppe_rnn.npy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/ppe_sparse.npy" beforeDir="false" afterPath="$PROJECT_DIR$/model/ppe_sparse.npy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/pt_top" beforeDir="false" afterPath="$PROJECT_DIR$/model/pt_top" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/pt_top_id" beforeDir="false" afterPath="$PROJECT_DIR$/model/pt_top_id" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/pt_top_id_confidence" beforeDir="false" afterPath="$PROJECT_DIR$/model/pt_top_id_confidence" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/pt_top_lm" beforeDir="false" afterPath="$PROJECT_DIR$/model/pt_top_lm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/pt_top_old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/pt_top_target" beforeDir="false" afterPath="$PROJECT_DIR$/model/pt_top_target" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sentence_avg_score" beforeDir="false" afterPath="$PROJECT_DIR$/model/sentence_avg_score" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/calc_avg_feature.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/calc_avg_feature.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/evaluation/eval_1" beforeDir="false" afterPath="$PROJECT_DIR$/evaluation/moses_sparse_ppe/evaluation/eval_1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/evaluation/eval_10" beforeDir="false" afterPath="$PROJECT_DIR$/evaluation/moses_sparse_ppe/evaluation/eval_10" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/evaluation/eval_2" beforeDir="false" afterPath="$PROJECT_DIR$/evaluation/moses_sparse_ppe/evaluation/eval_2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/evaluation/eval_3" beforeDir="false" afterPath="$PROJECT_DIR$/evaluation/moses_sparse_ppe/evaluation/eval_3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/evaluation/eval_4" beforeDir="false" afterPath="$PROJECT_DIR$/evaluation/moses_sparse_ppe/evaluation/eval_4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/evaluation/eval_5" beforeDir="false" afterPath="$PROJECT_DIR$/evaluation/moses_sparse_ppe/evaluation/eval_5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/evaluation/eval_6" beforeDir="false" afterPath="$PROJECT_DIR$/evaluation/moses_sparse_ppe/evaluation/eval_6" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/evaluation/eval_7" beforeDir="false" afterPath="$PROJECT_DIR$/evaluation/moses_sparse_ppe/evaluation/eval_7" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/evaluation/eval_8" beforeDir="false" afterPath="$PROJECT_DIR$/evaluation/moses_sparse_ppe/evaluation/eval_8" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/evaluation/eval_9" beforeDir="false" afterPath="$PROJECT_DIR$/evaluation/moses_sparse_ppe/evaluation/eval_9" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/hidden_epoch1" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/one_hidden_layer/hidden_epoch1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/hidden_epoch10" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/one_hidden_layer/hidden_epoch10" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/hidden_epoch2" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/one_hidden_layer/hidden_epoch2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/hidden_epoch3" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/one_hidden_layer/hidden_epoch3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/hidden_epoch4" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/one_hidden_layer/hidden_epoch4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/hidden_epoch5" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/one_hidden_layer/hidden_epoch5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/hidden_epoch6" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/one_hidden_layer/hidden_epoch6" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/hidden_epoch7" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/one_hidden_layer/hidden_epoch7" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/hidden_epoch8" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/one_hidden_layer/hidden_epoch8" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/hidden_epoch9" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/one_hidden_layer/hidden_epoch9" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/model_epoch1.pth" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/one_hidden_layer/model_epoch1.pth" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/model_epoch10.pth" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/one_hidden_layer/model_epoch10.pth" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/model_epoch2.pth" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/one_hidden_layer/model_epoch2.pth" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/model_epoch3.pth" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/one_hidden_layer/model_epoch3.pth" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/model_epoch4.pth" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/one_hidden_layer/model_epoch4.pth" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/model_epoch5.pth" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/one_hidden_layer/model_epoch5.pth" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/model_epoch6.pth" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/one_hidden_layer/model_epoch6.pth" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/model_epoch7.pth" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/one_hidden_layer/model_epoch7.pth" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/model_epoch8.pth" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/one_hidden_layer/model_epoch8.pth" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/model_epoch9.pth" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/one_hidden_layer/model_epoch9.pth" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/score_epoch1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/score_epoch10" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/score_epoch2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/score_epoch3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/score_epoch4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/score_epoch5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/score_epoch6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/score_epoch7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/score_epoch8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer/score_epoch9" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hidden_layer_net.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/one_hidden_layer_net.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/one_hot_encode.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/one_hot_encode.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/save_ppe_sparse.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/save_ppe_sparse.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/top_phrase_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/top_phrase_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/train_one_hidden_layer.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/train_one_hidden_layer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phrase_pair/sparse/update_phrase_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/update_phrase_table.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,11 +142,15 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/evaluation/moses_sparse_ppe" />
+      <recent name="$PROJECT_DIR$/evaluation/r2nn" />
+      <recent name="$PROJECT_DIR$/evaluation/moses" />
+      <recent name="$PROJECT_DIR$/evaluation" />
       <recent name="$PROJECT_DIR$/phrase_pair" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.recursive_nn">
-    <configuration name="experi" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.recurrent_nn">
+    <configuration name="calc_avg_feature" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="part-ii-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -67,11 +158,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/phrase_pair/R2NN" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/phrase_pair/R2NN/experi.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/model/sparse/calc_avg_feature.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -101,6 +192,48 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="one_hidden_layer_net" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="part-ii-project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/model/sparse" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/model/sparse/one_hidden_layer_net.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="recurrent_nn" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="part-ii-project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/model/RNN/recurrent_nn.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="recursive_nn" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="part-ii-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -114,27 +247,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/phrase_pair/R2NN/recursive_nn.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="save_top_lm" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="part-ii-project" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/phrase_pair/R2NN/save_top_lm.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -164,41 +276,21 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="train_r2nn" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="part-ii-project" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/phrase_pair/R2NN/train_r2nn.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Python.obtain_pt_target" />
-      <item itemvalue="Python.train_r2nn" />
-      <item itemvalue="Python.save_top_lm" />
-      <item itemvalue="Python.experi" />
       <item itemvalue="Python.test_r2nn" />
       <item itemvalue="Python.recursive_nn" />
+      <item itemvalue="Python.calc_avg_feature" />
+      <item itemvalue="Python.one_hidden_layer_net" />
+      <item itemvalue="Python.recurrent_nn" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.recurrent_nn" />
+        <item itemvalue="Python.one_hidden_layer_net" />
+        <item itemvalue="Python.calc_avg_feature" />
         <item itemvalue="Python.recursive_nn" />
         <item itemvalue="Python.test_r2nn" />
-        <item itemvalue="Python.experi" />
-        <item itemvalue="Python.save_top_lm" />
       </list>
     </recent_temporary>
   </component>
@@ -226,16 +318,5 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/phrase_pair/RNN/train_rnn.py</url>
-          <line>140</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

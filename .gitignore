@@ -1,6 +1,6 @@
 .DS_Store
-phrase_pair/phrase_table
-phrase_pair/pt_rw
-phrase_pair/RNN/cc.en.50.bin
+model/phrase_table
+model/pt_rw
+model/RNN/cc.en.50.bin
 .idea/workspace.xml
-phrase_pair/sparse/phrase_tables
+model/sparse/phrase_tables
