@@ -19,8 +19,12 @@ class R2NN(torch.nn.Module):
         right_node_source = ""
         right_node_target = ""
 
+        if node.left is None and node.right is None:
+            left_node_vector = node.vector
+            left_node_source = node.source
+            left_node_target = node.target
         if node.left is not None:
-            left_node_vector = node.left.vector    # recurrent (x) + ppe (s)
+            left_node_vector = node.left.vector
             left_node_source = node.left.source
             left_node_target = node.left.target
         if node.right is not None:
@@ -96,7 +100,7 @@ def get_ppe(source_phrase, target_phrase):
     return torch.tensor(ppe, dtype=torch.float32)
 
 
-def get_rec(source_phrase="", target_phrase=""):
+def get_rec(source_phrase, target_phrase):
     # translation score
     t_score = 0
 
