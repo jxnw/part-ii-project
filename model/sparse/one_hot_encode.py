@@ -1,8 +1,8 @@
 import pandas as pd
 
 path_to_pt_top = "model/pt_top"
-path_to_or = "corpus/training/fce.train.gold.bea19.clean.or"
-path_to_co = "corpus/training/fce.train.gold.bea19.clean.co"
+path_to_or = "corpus/training/fce.train.gold.bea19.or"
+path_to_co = "corpus/training/fce.train.gold.bea19.co"
 path_to_or_co = "model/aligned.grow-diag-final-and"
 path_to_output = "model/phrase_pair_id"
 

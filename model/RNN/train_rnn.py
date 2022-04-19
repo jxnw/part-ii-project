@@ -4,8 +4,8 @@ import torch
 from torch.utils.data import Dataset, DataLoader, Subset
 from recurrent_nn import RecurrentNN
 
-path_to_or_train = "corpus/training/fce.train.gold.bea19.clean.or"
-path_to_co_train = "corpus/training/fce.train.gold.bea19.clean.co"
+path_to_or_train = "corpus/training/fce.train.gold.bea19.or"
+path_to_co_train = "corpus/training/fce.train.gold.bea19.co"
 path_to_or_co_train = "model/aligned.grow-diag-final-and"
 path_to_word_vector = "model/RNN/cc.en.50.bin"
 

@@ -5,7 +5,7 @@ import torch
 from recurrent_nn import RecurrentNN
 
 
-path_to_or_train = "corpus/training/fce.train.gold.bea19.clean.or"
+path_to_or_train = "corpus/training/fce.train.gold.bea19.or"
 path_to_pth = "model/RNN/rnn_state/model_state_rnn.pth"
 path_to_pt_top = "model/pt_top"
 path_to_word_vector = "model/RNN/cc.en.50.bin"

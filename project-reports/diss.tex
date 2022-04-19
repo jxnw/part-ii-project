@@ -6,8 +6,9 @@
 \usepackage{verbatim}
 \usepackage{docmute}   % only needed to allow inclusion of proposal.tex
 \usepackage{parskip}
-\usepackage{listings}
 \usepackage{todonotes}
+\usepackage{listings}
+\usepackage{amsmath}
 
 \lstset{basicstyle=\ttfamily, breaklines=true}
 
@@ -62,7 +63,7 @@ Project Title:      & A Recursive Recurrent Neural Network \\
  & Decoder for Grammatical Error Correction \\
 Examination:        & Computer Science Tripos -- Part II, 2022  \\
 Word Count:         & \quickwordcount{diss}\footnotemark[1] \\
-Code line count:    & - \\
+Code line count:    & 1127 \\
 Project Originator: & - \\
 Supervisor:         & Dr Zheng Yuan, Dr Christopher Bryant
 \end{tabular}
@@ -118,7 +119,7 @@ extent for a comparable purpose.
 
 \chapter{Introduction}
 
-This project concerns my implementation of a \textit{recursive recurrent neural network} model (R\textsuperscript{2}NN) proposed by Liu et al. (2014) \cite{r2nn} This is to be integrated in a statistical machine translation (SMT) system to attempt the task of grammatical error correction. \todo[inline]{How well have you done?}
+This project concerns my implementation of a \textit{recursive recurrent neural network} model (R\textsuperscript{2}NN) proposed by Liu et al. (2014) \cite{r2nn} This is to be integrated in a statistical machine translation (SMT) system to attempt the task of grammatical error correction. \todo[inline]{More details}
 
 \section{Motivation}
 
@@ -259,32 +260,199 @@ My project is likely to involve statistical processing. I would be using the \te
 \texttt{pandas}\footnote{https://pandas.pydata.org/} is a powerful library for processing tabular data. This would be used to manipulate phrase tables in my project.
 
 \subsection{Dataset}
-The dataset introduced in BEA 2019 Shared Task\cite{bryant-etal-2019-bea} will be used in this project. I chose the two corpora (FCE v2.1 and W\&I+LOCNESS v2.1) which are immediately downloadable from the website\footnote{https://www.cl.cam.ac.uk/research/nl/bea2019st/\#data} to start with. The corpora have been standardised to be easily evaluated by ERRANT\cite{bryant-etal-2017-automatic,felice-etal-2016-automatic}. ERRANT is a toolkit used to annotate parallel data and compare hypothesis against reference to produce various evaluation metrics including F0.5 score. I may request other corpora as an extension of my project.
+The dataset introduced in BEA 2019 Shared Task\cite{bryant-etal-2019-bea} will be used in this project. I chose the corpora (\textbf{FCE v2.1}) which is immediately downloadable from the website\footnote{https://www.cl.cam.ac.uk/research/nl/bea2019st/\#data} to start with. The corpora have been standardised to be easily evaluated by ERRANT\cite{bryant-etal-2017-automatic,felice-etal-2016-automatic}. ERRANT is a toolkit used to annotate parallel data and compare hypothesis against reference to produce various evaluation metrics including F0.5 score. I may request other corpora as an extension of my project.
+
+For language model training, I will be using the \textbf{One Billion Word} dataset\cite{one-billion-word}. This is a dataset used for language modeling and is available on GitHub\footnote{https://github.com/ciprian-chelba/1-billion-word-language-modeling-benchmark}.
 
 \subsection{Version Control and Backup}
 Git will be used for version control. The entire project, including all the written code and my dissertation, will be pushed to GitHub regularly.
 
 \chapter{Implementation}
+This chapter describes the implementation of a Moses baseline SMT system and a R\textsuperscript{2}NN SMT system. Since the main purpose of this project is to compare the performance of our R\textsuperscript{2}NN decoder against Moses decoder, the R\textsuperscript{2}NN system should use the same language model, translation model and reordering model as Moses. For the translation model, the R\textsuperscript{2}NN paper\cite{r2nn} proposed a \textit{translation confidence based phrase pair embedding} (TCBPPE) to be used with the R\textsuperscript{2}NN decoder. The TCBPPE will be based on a phrase table which is produced by Moses translation model. In the end, the R\textsuperscript{2}NN decoder will make use of language model scores, translation model scores, reordering model scores from Moses as well as TCBPPE to find the best translation candidate.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\textwidth]{images/overview_moses_r2nn.png}
+\caption{Overview of Moses SMT and R\textsuperscript{2}NN SMT}
+\label{fig:moses_r2nn}
+\end{figure}
 
 \section{Repository Overview}
 -
 
-\section{Moses SMT}
--
+\section{Setup}
 
-\subsection{Pre-processing}
--
+\subsubsection{FCE Dataset}
+
+The FCE dataset was provided in m2 format. However, Moses requires parallel data which is aligned at the sentence level. An example taken from the m2 file looks like this:
+
+\texttt{S Her friend Pat had explained the whole story at her husband .\\
+A 8 9|||R:PREP|||to|||REQUIRED|||-NONE-|||0}
+
+[This means that for source sentence S, the word at position 8 to 9 (\texttt{at}) should be corrected to \texttt{to}.]
+
+The m2 format needs to be converted to sentence-aligned data to be used by Moses. Two files are generated from this, where the source file contains\\
+\texttt{Her friend Pat had explained the whole story at her husband .}
+
+and the target file contains\\
+\texttt{Her friend Pat had explained the whole story to her husband .}
+
+\subsubsection{One Billion Word Dataset}
+
+I downloaded the One Billion Word dataset for language model training. However, the files were too large to be handled by my machine. Since the dataset consists of fifty files, I decided to randomly choose 10 files from them and concatenated these files to be used in language model training. 
+
+
+\section{Moses Baseline}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\textwidth]{images/moses_pipeline.png}
+\caption{Overview of Moses SMT}
+\label{fig:moses_pipeline}
+\end{figure}
 
 \subsection{Language Model}
--
+The One Billion Word dataset is used for language model training. In the R\textsuperscript{2}NN paper, a 5-gram language model is used. Here, I used KenLM which came with Moses installation to train a 5-gram language model. An example query of the trained language model looks like this:
+\todo[inline]{Example query of LM}
+
+\subsection{Translation Model and Reordering Model}
+The translation model is trained with FCE sentence-aligned data. There are three components in translation model training: word alignment, phrase extraction and scoring. Word alignment is obtained using GIZA++, a toolkit to train word alignment models. Phrases are then extracted from our training files and a phrase table is produced. The phrase table contains phrase translation pairs and the scores associated with each pair.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{ |c|c|c|c|c| } 
+ \hline
+ source & target & scores & alignment & counts \\ [0.5ex] 
+ \hline
+ As we & As we & 1 0.901657 0.846154 0.90511 & 0-0 1-1 & 11 13 11\\
+ As we & We & 0.00115075 1.68879e-05 0.0769231 0.0153198 & 1-0 & 869 13 1\\
+ As we & as we & 0.0212766 0.00117032 0.0769231 0.00482726 & 0-0 1-1 & 47 13 1\\
+ \hline
+\end{tabular}
+\caption{Phrase table from Moses}
+\label{table:phrase_table}
+\end{table}
+
+A distance-based reordering model is then built, and a reordering table is created. Finally, Moses decoder would make use of the language model, the phrase table as well as the reordering table. Given a source sentence, the Moses decoder will output the best translation candidate based on the scores from the above models. 
 
 \section{\texorpdfstring{R\textsuperscript{2}NN}{R2NN} SMT}
--
 
-\subsection{Pre-processing}
--
+\begin{figure}[ht]
+\centering
+\includegraphics[width=1\textwidth]{images/r2nn_pipeline.png}
+\caption{Overview of R\textsuperscript{2}NN SMT}
+\label{fig:r2nn_pipeline}
+\end{figure}
 
-\subsection{Phrase Pair Embedding}
+The R\textsuperscript{2}NN SMT consists of three parts: translation confidence based phrase pair embedding (TCBPPE), global features, and a R\textsuperscript{2}NN decoder.
+
+\subsubsection{TCBPPE}
+A phrase pair embedding is a vector representation which encodes the meaning of a phrase pair. Recall that our R\textsuperscript{2}NN model has a tree structure, where each node has a representation vector $s$ and a recurrent vector $x$. The TCBPPE is to be used as the representation vector $s$ and it is used to generate the leaf nodes of the derivation tree. 
+
+The phrase pair embedding is split into two parts: translation confidence with sparse features and translation confidence with recurrent neural network. These two vectors will be obtained separately, and will be concatenated to be used as the representation vector $s$ in the R\textsuperscript{2}NN.
+
+\subsubsection{Global features}
+The global features encode global information that cannot be generated by child representations. It includes language model scores, translation scores and reordering scores which are obtained from Moses. These scores are concatenated together to be used as recurrent vectors $x$ to the R\textsuperscript{2}NN model.
+
+\subsubsection{R\textsuperscript{2}NN decoder}
+The recursive recurrent neural network (R\textsuperscript{2}NN) will be used as a decoder to find the best translation candidate. For an input sentence, the decoder would construct a tree based on phrases in the sentence. An output score will be computed based on TCBPPE, global features and the structure of the tree. The translation candidate that gives the highest score will be taken as the best translation candidate.
+
+\subsection{TCBPPE: Sparse Features}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.3\textwidth]{images/one_hidden_layer.png}
+\caption{Structure of one-hidden-layer feedforward neural network}
+\label{fig:one_hidden_layer}
+\end{figure}
+
+A one-hidden-layer feedforward neural network is used to get a translation confidence score using sparse features. The structure of the network is shown in Figure \ref{fig:one_hidden_layer}. Following the R\textsuperscript{2}NN paper\cite{r2nn}, the size of the hidden layer is set to 20. The size of the input layer is 200,001. By training the network, we obtain hidden matrix $W$ of size 200,001 by 20. $W$ will be used as phrase pair embedding matrix for sparse features (\texttt{ppe\_sparse}). The goal is to find the $W$ that gives the best phrase pair embedding.
+
+Firstly, the training data (sentences) need to be encoded as one-hot like data to be used as input to the network. The top 200,000 most frequent phrase pairs in the Moses translation table are selected, each to be a feature itself, and an additional feature is used for all the other phrase pairs. For each sentence pair (source-target) in the training data, it needs to be encoded as a vector of length 200,001 consisting of 0s and 1s, where the position $i$ in the vector contains a 1 if and only if the $i$\textsuperscript{th} most frequent phrase pair is found in this sentence pair. An example taken from the training file:
+
+[Source sentence]
+\texttt{What she would do ?}
+
+[Target sentence]
+\texttt{What would she do ?}
+
+[Encoded vector]
+\texttt{[$\underset{0}{0}, ..., \underset{39}{1}, ..., \underset{200000}{1}$]}
+
+A 0 at position 0 means that the most frequent phrase pair does not exist in the sentence pair. A 1 at position 39 means that the 40\textsuperscript{th} most frequent phrase pair exists in the sentence pair. A 1 at position 200,000 means that the sentence pair contains a phrase pair that is not in the top 200,000 most frequent pairs.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{ |c|c|c|c| } 
+ \hline
+ index & source & target & ... \\ [0.5ex] 
+ \hline
+ 0 & . & . & ... \\ 
+ ... & ... & ... & ... \\ 
+ 39 & do & do & ... \\ 
+ \hline
+\end{tabular}
+\caption{Top 200,000 phrase pairs}
+\label{table:pt_top_exmaple}
+\end{table}
+
+One problem with this is that the resulting vector from sentence pairs are usually sparse vectors. To save memory, instead of storing the whole vector, the position indices of 1s in the vector are stored in a file named \texttt{phrase\_pair\_id} (i.e. the phrase pair ids used in each sentence pair are stored). When loading the sentence pairs as training data, it is easy to obtain the one-hot encoding of each sentence pair from \texttt{phrase\_pair\_id}.
+
+The next step is to obtain the expected output for each input sentence pair. Since the TCBPPE encodes translation model information, it is reasonable to use the translation scores from Moses translation model. For each sentence pair $S\textrm{-}T$ containing phrase pairs $p_1, p_2, ..., p_n$, the expected output score is computed by
+\[ score_{S\textrm{-}T} = \frac{\sum_n c_{p_n}}{n} \]
+where $c_{p_n}$ is the average translation score for phrase pair $p_n$.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\textwidth]{images/sparse_pipeline.png}
+\caption{Training pipeline of one-hidden-layer feedforward neural network}
+\label{fig:sparse_pipeline}
+\end{figure}
+
+
+After obtaining the training dataset, we can train the neural network. The neural network will be trained for 10 epochs, where one epoch refers to one cycle of processing all the data in training set. After each epoch, the hidden matrix $W$ is stored. The $k^{th}$ row in $W$ will be used as the phrase pair embedding (sparse) for the top $k^{th}$ frequent phrase pair. That is, the embedding for the most frequent phrase pair is $W[0]$, and the embedding for phrase pairs that are not in the top 200,000 is represented by $W[200000]$.
+
+We evaluate $W$ by updating the Moses phrase table: for each row (ppe) in $W$, we add the ppe as an additional feature to the phrase table. Then we pass the updated phrase table to Moses decoder and use ERRANT to evaluate the performance. Table \ref{table:sparse_5} and Table \ref{table:sparse_10} shows the evaluation result by ERRANT for training epoch 5 and training epoch 10 respectively. Among all the $W$ from epoch 1 to 10, 10-epoch $W$ gives the highest precision, recall and $F_{0.5}$ score. Hence, $W$ will be used as the ppe matrix for sparse features (\texttt{ppe\_sparse}).
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{ |c|c|c|c|c|c| } 
+ \hline
+ TP & FP & FN & Prec & Rec & F0.5 \\ [0.5ex] 
+ \hline
+ 543 & 2366 & 4006 & 0.1867 & 0.1194 & 0.1677 \\ 
+ \hline
+\end{tabular}
+\caption{ERRANT output (5 epochs)}
+\label{table:sparse_5}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{ |c|c|c|c|c|c| } 
+ \hline
+ TP & FP & FN & Prec & Rec & F0.5 \\ [0.5ex] 
+ \hline
+ 545 & 2363 & 4004 & 0.1874 & 0.1198 & 0.1684 \\ 
+ \hline
+\end{tabular}
+\caption{ERRANT output (10 epochs)}
+\label{table:sparse_10}
+\end{table}
+
+
+\subsection{TCBPPE: Recurrent Neural Network (RNN)}
+
+- Word embedding (fasttext vs word2vec)
+
+\subsection{Global Features}
+
+\subsection{Building \texorpdfstring{R\textsuperscript{2}NN}{R2NN}}
+- Recursive neural network (RvNN)
+
+- Recurrent input vectors
+
+\section{Testing}
 
 \chapter{Evaluation}
 
