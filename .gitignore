@@ -4,3 +4,4 @@ model/pt_rw
 model/RNN/cc.en.50.bin
 .idea/workspace.xml
 model/sparse/phrase_tables
+lm/

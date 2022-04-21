@@ -2,38 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e646ede1-5fa9-4b7f-9bbb-fcab4a1d1ca1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/lm/billion-training-monolingual-10.blm.en" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lm/billion-training-monolingual-10.en" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/moses_exp/tuned_moses.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/corpus/downloads/wi+locness/json/A.dev.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/corpus/downloads/wi+locness/json/A.train.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/corpus/downloads/wi+locness/json/B.dev.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/corpus/downloads/wi+locness/json/B.train.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/corpus/downloads/wi+locness/json/C.dev.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/corpus/downloads/wi+locness/json/C.train.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/corpus/downloads/wi+locness/json/N.dev.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/corpus/downloads/wi+locness/json_to_m2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/corpus/downloads/wi+locness/licence.wi.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/corpus/downloads/wi+locness/license.locness.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/corpus/downloads/wi+locness/m2/A.dev.gold.bea19.m2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/corpus/downloads/wi+locness/m2/A.train.gold.bea19.m2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/corpus/downloads/wi+locness/m2/ABC.train.gold.bea19.m2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/corpus/downloads/wi+locness/m2/ABCN.dev.gold.bea19.m2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/corpus/downloads/wi+locness/m2/B.dev.gold.bea19.m2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/corpus/downloads/wi+locness/m2/B.train.gold.bea19.m2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/corpus/downloads/wi+locness/m2/C.dev.gold.bea19.m2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/corpus/downloads/wi+locness/m2/C.train.gold.bea19.m2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/corpus/downloads/wi+locness/m2/N.dev.gold.bea19.m2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/corpus/downloads/wi+locness/readme.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/corpus/downloads/wi+locness/test/ABCN.test.bea19.orig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/corpus/downloads/wi+locness/test/readme.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/corpus/training/fce.train.gold.bea19.clean.co" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/corpus/training/fce.train.gold.bea19.clean.or" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/corpus/training/fce.train.gold.bea19.co" beforeDir="false" afterPath="$PROJECT_DIR$/corpus/training/fce.train.gold.bea19.co" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/corpus/training/fce.train.gold.bea19.or" beforeDir="false" afterPath="$PROJECT_DIR$/corpus/training/fce.train.gold.bea19.or" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/RNN/save_ppe_rnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/RNN/save_ppe_rnn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/RNN/train_rnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/RNN/train_rnn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/fce.train.gold.bea19.clean.co" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/fce.train.gold.bea19.clean.or" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/sparse/one_hot_encode.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/one_hot_encode.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lm/fce.train.gold.bea19.arpa.co" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lm/fce.train.gold.bea19.blm.co" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/R2NN/R2NN.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/R2NN/R2NN.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/R2NN/recursive_nn.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/R2NN/recursive_nn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/R2NN/train_r2nn.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/R2NN/train_r2nn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-reports/diss.tex" beforeDir="false" afterPath="$PROJECT_DIR$/project-reports/diss.tex" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +64,7 @@
       <recent name="$PROJECT_DIR$/phrase_pair" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.recurrent_nn">
+  <component name="RunManager" selected="Python.recursive_nn">
     <configuration name="calc_avg_feature" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="part-ii-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -170,7 +149,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="recursive_nn" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="recursive_nn" type="PythonConfigurationType" factoryName="Python">
       <module name="part-ii-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -178,11 +157,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/phrase_pair/R2NN" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/phrase_pair/R2NN/recursive_nn.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/model/R2NN/recursive_nn.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />

@@ -103,7 +103,6 @@ batch_size = 100
 epoch = 1
 
 r2nn = R2NN(21, 2)
-loss_fn = torch.nn.MSELoss()
 optimizer = torch.optim.SGD(r2nn.parameters(), lr=learning_rate)
 
 for epoch_id in range(epoch):

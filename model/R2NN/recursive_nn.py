@@ -9,7 +9,7 @@ class RecursiveNN(torch.nn.Module):
         self.V = torch.nn.Linear(input_size, 1)
 
     def forward(self, node):
-        left_node = node.left.representation    # recurrent (x) + ppe (s)
+        left_node = node.left.representation
         right_node = node.right.representation
         inp = torch.cat([left_node, right_node], 0)
         parent = torch.tanh(self.W(inp))
@@ -47,9 +47,20 @@ class TreeNode:
 
 rvnn = RecursiveNN(4)
 
-s_1 = np.array([[8., 8, 8, 8], [2, 2, 2, 2], [3, 3, 3, 3], [7, 7, 7, 7]])
+s = np.array([[8., 8, 8, 8], [2, 2, 2, 2], [3, 3, 3, 3], [7, 7, 7, 7]])
 tree_node = TreeNode()
-ans = tree_node.greedy_tree(s_1, rvnn)
+tree = tree_node.greedy_tree(s, rvnn)
 
-parent_node, score = rvnn(ans)
+parent_node, score = rvnn(tree)
 print(parent_node, score)
+
+
+def print_tree(tree):
+    if tree.left is not None:
+        print_tree(tree.left)
+    print(tree.representation)
+    if tree.right is not None:
+        print_tree(tree.right)
+
+
+print_tree(tree)
