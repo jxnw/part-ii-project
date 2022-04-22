@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e646ede1-5fa9-4b7f-9bbb-fcab4a1d1ca1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lm/billion-training-monolingual-10.blm.en" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lm/billion-training-monolingual-10.en" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/moses_exp/tuned_moses.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lm/fce.train.gold.bea19.arpa.co" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lm/fce.train.gold.bea19.blm.co" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/R2NN/R2NN.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/R2NN/R2NN.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/R2NN/recursive_nn.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/R2NN/recursive_nn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/R2NN/train_r2nn.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/R2NN/train_r2nn.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project-reports/diss.tex" beforeDir="false" afterPath="$PROJECT_DIR$/project-reports/diss.tex" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -193,11 +184,11 @@
     </configuration>
     <list>
       <item itemvalue="Python.obtain_pt_target" />
-      <item itemvalue="Python.test_r2nn" />
       <item itemvalue="Python.recursive_nn" />
       <item itemvalue="Python.calc_avg_feature" />
       <item itemvalue="Python.one_hidden_layer_net" />
       <item itemvalue="Python.recurrent_nn" />
+      <item itemvalue="Python.test_r2nn" />
     </list>
     <recent_temporary>
       <list>
