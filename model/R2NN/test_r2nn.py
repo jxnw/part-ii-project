@@ -4,7 +4,7 @@ from R2NN import R2NN, TreeNode
 
 path_to_test_source = "corpus/dev/fce.test.gold.bea19.or"
 path_to_test_translated = "evaluation/r2nn/fce.test.r2nn.translated"
-path_to_pth = "evaluation/r2nn/fce.test.r2nn.translated"
+path_to_pth = "model/R2NN/r2nn_state/model_state_r2nn.pth"
 path_to_pt_top = "model/pt_top"
 
 
