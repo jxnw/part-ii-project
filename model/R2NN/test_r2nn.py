@@ -49,7 +49,7 @@ def split_sentences(file):
 
 
 def n_best_pair(source, targets):
-    best_pair = [(source,), ("",)]
+    best_pair = [(source,), (source,)]
     highest_score = float('-inf')
     for target in targets:
         pair = [(source,), (target,)]
