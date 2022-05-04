@@ -51,16 +51,34 @@ s = np.array([[8., 8, 8, 8], [2, 2, 2, 2], [3, 3, 3, 3], [7, 7, 7, 7]])
 tree_node = TreeNode()
 tree = tree_node.greedy_tree(s, rvnn)
 
-parent_node, score = rvnn(tree)
-print(parent_node, score)
+parent_node, output_score = rvnn(tree)
+print(parent_node, output_score)
 
 
-def print_tree(tree):
-    if tree.left is not None:
-        print_tree(tree.left)
-    print(tree.representation)
-    if tree.right is not None:
-        print_tree(tree.right)
+def dfs(root):
+    if root is not None:
+        dfs(root.left)
+        print(root.representation)
+        dfs(root.right)
 
 
-print_tree(tree)
+def bfs(root):
+    q = [(root, 0, -1)]
+    current_id = 1
+    while len(q) > 0:
+        size = len(q)
+        for i in range(size):
+            t = q[i][0]
+            t_id = q[i][1]
+            parent_id = q[i][2]
+            print(t_id, "\t", parent_id, "\t", t.representation)
+            if t.left is not None:
+                q.append((t.left, current_id, t_id))
+                current_id += 1
+            if t.right is not None:
+                q.append((t.right, current_id, t_id))
+                current_id += 1
+        q = q[size:]
+
+
+bfs(tree)
