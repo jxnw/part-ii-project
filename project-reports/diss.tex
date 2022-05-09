@@ -2,23 +2,19 @@
 \documentclass[12pt,a4paper,twoside,openright]{report}
 \usepackage[pdfborder={0 0 0}]{hyperref}    % turns references into hyperlinks
 \usepackage[margin=25mm]{geometry}  % adjusts page layout
-\usepackage{graphicx}  % allows inclusion of PDF, PNG and JPG images
-\usepackage{pmboxdraw}
-\usepackage{verbatim}
-\usepackage{docmute}   % only needed to allow inclusion of proposal.tex
-\usepackage{parskip}
-\usepackage{pdfpages}
-\usepackage{listings}
-\usepackage{amsmath}
-\usepackage{amsfonts}
+\usepackage{verbatim}   % code 
+\usepackage{parskip}    % formatting
+\usepackage{pdfpages}   % include proposal.pdf
+\usepackage{listings}   % code
+\usepackage{pmboxdraw}  % repository overview
+\usepackage{amsmath}    % math
+\usepackage{amsfonts}   % checkmark
+\usepackage{algorithm}  % algorithm
+\usepackage{algpseudocode}  % algorithm
+\usepackage[linguistics]{forest}    % tree
+\usepackage{graphicx}   % allows inclusion of PDF, PNG and JPG images
 
-\usepackage{algorithm}
-\usepackage{algpseudocode}
-\usepackage[linguistics]{forest}
-\usepackage[nocenter]{qtree}
-
-\usepackage{todonotes} % remove
-
+% \usepackage{docmute}    % only needed to allow inclusion of proposal.tex
 
 \lstset{basicstyle=\ttfamily, breaklines=true, columns=fullflexible}
 
@@ -74,16 +70,16 @@ does not contain material that has already been used to any substantial
 extent for a comparable purpose.
 
 \bigskip
-\leftline{Signed [signature]}
+\leftline{Signed \textit{Jiaxin Wang}}
 
 \medskip
-\leftline{Date [date]}
+\leftline{Date \today}
 
 \chapter*{Proforma}
 
 {\large
 \begin{tabular}{ll}
-Candidate Number:   & -                       \\
+Candidate Number:   & 2432D \\
 Project Title:      & A Recursive Recurrent Neural Network \\
  & Decoder for Grammatical Error Correction \\
 Examination:        & Computer Science Tripos -- Part II, 2022  \\
@@ -111,13 +107,11 @@ All the core goals of the project have been achieved. Two SMT systems were built
 None.
 
 \section*{Acknowledgements}
-
+I would like to thank my supervisors, Dr Zheng Yuan and Dr Christopher Bryant, for their help and guidance throughout this project. My gratitude extends to my Director of Studies and my friends for proofreading my work. Finally, I would like to give my special thanks to Declan Shafi for his unconditional support and understanding.
 
 \tableofcontents
 
 \listoffigures
-
-% \listoftodos
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % now for the chapters
@@ -128,13 +122,13 @@ None.
 
 \section{Motivation}
 
-Grammatical Error Correction (GEC) is the task of producing a grammatically correct sentence given a potentially erroneous text while preserving its meaning. One of the many motivations behind this task is that it plays a significant role in helping learners of a foreign language understand the language better. Being an ESL (English as a second language) learner myself, it is often difficult for me to spot the errors in my English writing since English grammar is quite different from that of my first language. Native English speakers may wish to use a GEC system to avoid mistakes in their writing, especially in a professional environment (e.g. work emails). 
+Grammatical Error Correction (GEC) is the task of producing a grammatically correct sentence given a potentially erroneous text while preserving its meaning. One of the many motivations behind this task is that it plays a significant role in helping learners of a foreign language understand the language better. Being an English as a second language (ESL) learner myself, it is often difficult for me to spot the errors in my English writing since English grammar is quite different from that of my first language. Native English speakers may wish to use a GEC system to avoid mistakes in their writing, especially in a professional environment (e.g. work emails). 
 
-One common approach to GEC, SMT-based GEC, is to treat GEC as a translation problem and use a statistical machine translation (SMT) system to solve it. We train an SMT system that takes an erroneous source sentence as input and the grammatically correct sentence as the expected output. By searching for the best `translation' from the source sentence, the aim is to find a grammatically correct sentence that preserves the meaning of the original sentence.
+One common approach to GEC is to treat GEC as a translation problem and use a statistical machine translation (SMT) system to solve it. We train an SMT system that takes an erroneous source sentence as input and the grammatically correct sentence as the expected output. By searching for the best `translation' from the source sentence, the aim is to find a grammatically correct sentence that preserves the meaning of the original sentence.
 
 Liu et al. proposed a novel model for SMT using a \textit{recursive recurrent neural network} (R\textsuperscript{2}NN)\cite{r2nn}. It has a tree structure similar to a recursive neural network, with recurrent input vectors to encode global information that cannot be generated by the child node representations. In the paper, they showed that their R\textsuperscript{2}NN SMT model achieved better performance than a state-of-the-art baseline system on a Chinese-to-English translation task. However, they did not publish their code, and no implementation of such an R\textsuperscript{2}NN SMT model is publicly available.
 
-It is therefore of interest to implement such a neural network and apply it to the task of GEC. For one, publishing the code could benefit other researchers in this area who are interested in NLP (natural language processing), GEC, and neural networks. For another, if the R\textsuperscript{2}NN model is proven to be useful for GEC, it could help with developing better GEC systems and assist millions of English learners.
+It is therefore of interest to implement such a neural network and apply it to the task of GEC. For one, publishing the code could benefit other researchers in this area who are interested in natural language processing (NLP), GEC, and neural networks. For another, if the R\textsuperscript{2}NN model is proven to be useful for GEC, it could help with developing better GEC systems and assist millions of English learners.
 
 \section{Problem Overview}
 
@@ -158,7 +152,7 @@ This project aims to implement the R\textsuperscript{2}NN together with TCBPPE i
 
 \section{Starting Point}\label{section:start}
 
-The goal of this project is to implement the R\textsuperscript{2}NN decoder proposed in the paper \textit{A Recursive Recurrent Neural Network for Statistical Machine Translation}\cite{r2nn} and to compare its performance against a baseline Moses decoder. I have not used Moses\cite{moses} before, but a tutorial is available on the official website\footnote{https://www.statmt.org/moses/?n=Moses.Baseline}. This tutorial covers how to install Moses, how to prepare training data and how to train it.
+The goal of this project is to implement the R\textsuperscript{2}NN decoder proposed in the paper \textit{A Recursive Recurrent Neural Network for Statistical Machine Translation}\cite{r2nn} and to compare its performance against a baseline Moses decoder. I have not used Moses\cite{moses} before, but a tutorial is available on the official website.\footnote{https://www.statmt.org/moses/?n=Moses.Baseline}
 
 The Part IB Computer Science Tripos course Formal Models of Language\footnote{https://www.cl.cam.ac.uk/teaching/2021/ForModLang/} presents the foundation theory of Natural Language Processing, while Artificial Intelligence\footnote{https://www.cl.cam.ac.uk/teaching/2021/ArtInt/} gives an introduction to neural networks and explains how forwarding and backpropagation works. Prior to this project I did not have any coding experience with neural networks.
 
@@ -207,10 +201,10 @@ P(w_i|w_{i-N+1}^{i-1}) = \frac{count(w_{i-N+1}^i)}{count(w_{i-N+1}^{i-1})}
 However, if a sequence did not appear in the training set, the above formula would give a probability of 0 for this sequence, even if the sequence is actually valid. To deal with this problem, a technique called \textbf{smoothing} is used to assign a non-zero probability to a sequence that is unseen in the training corpora. The details of smoothing fall outside the scope of this project. For more information, please refer to \textit{Speech and Language Processing}\cite{Jurafsky:2009:SLP:1214993}.
 
 \subsubsection{Translation Model and Reordering Model}
-The translation model estimates $P(F|E)$,  the probability that $E$ generates $F$. Firstly, an alignment model is introduced to learn the mappings between words. Then we can compute the \textbf{translation probability} using the alignment and construct a phrase translation table. The table should contain all the phrase pairs and the associated probabilities. For example, the table will contain the probability of translating from \textit{I likes} to \textit{I like}. The reordering model handles phrase reordering. It measures the \textbf{distortion probability}, which is the probability of two consecutive phrases in the target language $E$ being separated in source language $F$ by a distance. Eventually, $P(F|E)$ is computed based on translation probabilities and distortion probabilities.
+The translation model estimates $P(F|E)$,  the probability that $E$ generates $F$. Firstly, an alignment model is introduced to learn the mappings between words. Then the \textbf{translation probability} can be computed using the alignment and construct a phrase translation table. The table should contain all the phrase pairs and the associated probabilities. For example, the table will contain the probability of translating from \textit{I likes} to \textit{I like}. The reordering model handles phrase reordering. It measures the \textbf{distortion probability}, which is the probability of two consecutive phrases in the target language $E$ being separated in source language $F$ by a distance. Eventually, $P(F|E)$ is computed based on translation probabilities and distortion probabilities.
 
 \subsubsection{Decoder}
-The decoder searches for the $\hat{E}$ which maximizes $P(F|E)P(E)$, the product of the two probabilities computed above. This can be done using \textbf{beam search}. Starting with the null hypothesis (with no translations) as the initial state, we expand the hypothesis by finding possible phrase translation for words in the source sentence $F$. A cost is computed, and we would keep the n-lowest cost translation at each stage. We keep expanding it until we have covered all words in $F$. Eventually, we output the translation that gives the lowest cost.
+The decoder searches for the $\hat{E}$ which maximizes $P(F|E)P(E)$, the product of the two probabilities computed above. This can be done using \textbf{beam search}. Starting with the null hypothesis (with no translations) as the initial state, the hypothesis can be expanded by finding possible phrase translation for words in the source sentence $F$. A cost is computed, and the n lowest cost translations are kept at each stage. The expansion is repeated until all the words in $F$ have been recovered. Eventually, the translation that gives the lowest cost would be the output.
 
 \subsection{Moses SMT}
 Moses\cite{moses} is a statistical machine translation toolkit. A tutorial on how to build a baseline SMT system is available on the Moses website\footnote{https://www.statmt.org/moses/?n=Moses.Baseline}. 
@@ -261,7 +255,7 @@ where $\hat{x}$ is the concatenation of vectors $[x^{[l, m]}; s^{[l, m]}; x^{[m,
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.6\textwidth]{images/r2nn.png}
-\caption{Recursive recurrent neural network (Liu et al., 2014, p.1494)}
+\caption{Recursive recurrent neural network from the paper\cite{r2nn}}
 \label{fig:r2nn}
 \end{figure}
 
@@ -289,7 +283,6 @@ Based on the Project Structure section from my project proposal, the following r
 
 \textbf{R\textsuperscript{2}NN SMT for GEC}
 
-Following the R\textsuperscript{2}NN paper by Liu et al.\cite{r2nn},
 \begin{itemize}
     \item Phrase pair embeddings (PPE) should be learned by building a one-hidden-layer neural network and a recurrent neural network
     \item A recursive recurrent neural network (R\textsuperscript{2}NN) should be built and used as a decoder
@@ -365,7 +358,7 @@ I downloaded the One Billion Word dataset for language model training. However, 
 To build a baseline Moses SMT system, three models need to be trained: a language model, a translation model and a reordering model.
 
 \subsection{Language Model}\label{section:moses_lm}
-The One Billion Word dataset is used for language model training. In the R\textsuperscript{2}NN paper, a 5-gram language model is used. Here, I used KenLM which came with Moses installation to train a 5-gram language model. As discussed in section \ref{section:SMT_system}, this means that the language model would look at 4 words in the past. After training, the language model is able to compute a total score for any given sequence of words. The score represents the log probability of this sequence and would be used as the language model score (LM score) later on. The example below shows that our trained language model assigns a higher score to a valid English sentence compared to incorrect English sentences.
+The One Billion Word dataset is used for language model training. In the R\textsuperscript{2}NN paper, a 5-gram language model is used. Therefore, I used the KenLM toolkit which came with Moses installation to train a 5-gram language model. As discussed in section \ref{section:SMT_system}, this means that the language model would look at 4 words in the past. After training, the language model is able to compute a total score for any given sequence of words. The score represents the log probability of this sequence and would be used as the language model score (LM score) later on. The example below shows that our trained language model assigns a higher score to a valid English sentence compared to incorrect English sentences.
 
 \begin{center}
 \begin{tabular}{ c | c }
@@ -380,7 +373,7 @@ The One Billion Word dataset is used for language model training. In the R\texts
 \subsection{Translation Model and Reordering Model}\label{section:moses_tm}
 The translation model is trained with FCE sentence-aligned data. There are three components in translation model training: word alignment, phrase extraction and scoring. Word alignment is obtained using GIZA++, a toolkit to train word alignment models. Phrases are then extracted from our training files and a phrase table is produced. A distance-based reordering model is also built, and a reordering table is created. 
 
-Table \ref{table:phrase_table} shows part of the phrase table generated by Moses\footnote{In the actual file, columns are separated by $\vert\vert\vert$}. Each phrase pair from the training data has an unique entry in the phrase table. Four translation scores are computed for every phrase pair, namely inverse phrase translation probability \texttt{(target $\rightarrow$ source)}, inverse lexical weighting, direct phrase translation probability \texttt{(source $\rightarrow$ target)}, and direct lexical weighting. The phrase table also contains the alignment between the source phrase and the target phrase. The column named `counts' contains three numbers. The first is the number of times the target phrase appeared in the training target file, \texttt{count(target)}. The second is the frequency of the source phrase in the training source file, \texttt{count(source)}. The third is the number of times that the source phrase is mapped to the target phrase, \texttt{count(source $\rightarrow$ target)}.
+Table \ref{table:phrase_table} shows part of the phrase table generated by Moses.\footnote{In the actual file, columns are separated by $\vert\vert\vert$} Each phrase pair from the training data has an unique entry in the phrase table. Four translation scores are computed for every phrase pair, namely inverse phrase translation probability \texttt{(target $\rightarrow$ source)}, inverse lexical weighting, direct phrase translation probability \texttt{(source $\rightarrow$ target)}, and direct lexical weighting. The phrase table also contains the alignment between the source phrase and the target phrase. The column named `counts' contains three numbers. The first is the number of times the target phrase appeared in the training target file, \texttt{count(target)}. The second is the frequency of the source phrase in the training source file, \texttt{count(source)}. The third is the number of times that the source phrase is mapped to the target phrase, \texttt{count(source $\rightarrow$ target)}.
 
 \begin{table}[ht]
 \centering
@@ -414,7 +407,7 @@ The R\textsuperscript{2}NN SMT model consists of three parts: translation confid
 \subsubsection{TCBPPE}
 A phrase pair embedding is a vector representation which encodes the meaning of a phrase pair. This was used as the \textbf{representation vector} in R\textsuperscript{2}NN model. 
 
-Liu et al.\cite{r2nn} argued that the phrase pair embedding should capture the translation relationship between phrase pairs at phrase level. They presented a \textbf{translation confidence based phrase pair embedding} (TCBPPE) method and demonstrated that it was better than simply taking the average of the embedding of words. Their phrase pair embedding is split into two parts: translation confidence with sparse features (section \ref{section:TCBPPE_sparse}) and translation confidence with recurrent neural network (section \ref{section:TCBPPE_rnn}). These two embeddings were obtained separately and then concatenated together (section \ref{section:TCBPPE}) to be used as the representation vector of each phrase pair.
+Liu et al.\cite{r2nn} argued that the phrase pair embedding should capture the translation relationship between phrase pairs at phrase level. They presented a \textbf{translation confidence based phrase pair embedding} (TCBPPE) method and demonstrated that it gave a higher performance than simply taking the average of the embedding of words. Their phrase pair embedding is split into two parts: translation confidence with sparse features (section \ref{section:TCBPPE_sparse}) and translation confidence with recurrent neural network (section \ref{section:TCBPPE_rnn}). These two embeddings were obtained separately and then concatenated together (section \ref{section:TCBPPE}) to be used as the representation vector of each phrase pair.
 
 \subsubsection{Global features}
 The global features encode global information that cannot be generated by child representations. This was used as the \textbf{recurrent input vector} in R\textsuperscript{2}NN model. 
@@ -504,7 +497,7 @@ Figure \ref{fig:sparse_acc}, \ref{fig:sparse_rec} and \ref{fig:sparse_f} shows h
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.4\textwidth]{images/rnn_ppe.png}
-\caption{Recurrent neural network for translation confidence (Liu et al., 2014, p.1497)}
+\caption{Recurrent neural network for translation confidence from the paper\cite{r2nn}}
 \label{fig:rnn_ppe}
 \end{figure}
 
@@ -584,7 +577,7 @@ The phrase pairs used in this translation indicate how the source sentence is sp
 \subsubsection{Building an \texorpdfstring{R\textsuperscript{2}NN}{R2NN}}
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.45\textwidth]{images/rvnn_imple.png}
+\includegraphics[width=0.4\textwidth]{images/rvnn_imple.png}
 \caption{My implementation of a recursive neural network}
 \label{fig:rvnn_imple}
 \end{figure}
@@ -650,7 +643,7 @@ I used the same function $f$ as Liu et al. in their paper\cite{r2nn}, i.e. the $
 
 The output score $y$ is computed as
 \[ y = V[x_{parent}; s_{parent}] \]
-where the recurrent input vector for parent $x_{parent}$ is obtained independently of the child nodes.
+where the recurrent input vector for parent $x_{parent}$ is obtained independently of the child nodes. The code for \texttt{R2NN} and \texttt{TreeNode} can be found in appendix \ref{appendix:code}.
 
 \subsubsection{Training the \texorpdfstring{R\textsuperscript{2}NN}{R2NN}}
 
@@ -830,8 +823,8 @@ All of the success criteria specified in the project proposal have been met and 
     \item[\checkmark] A baseline SMT-based GEC system is built \textit{(section \ref{section:moses_baseline})}
     \item[\checkmark] A one-hidden-layer neural network is built to learn the translation confidence score \textit{(section \ref{section:TCBPPE_sparse})}
     \item[\checkmark] A recurrent neural network is built to learn the translation confidence score \textit{(section \ref{section:TCBPPE_rnn})}
-    \item[\checkmark] An R2NN model is implemented \textit{(section \ref{section:global_features} and \ref{section:r2nn_model})}
-    \item[\checkmark] An SMT-based GEC system making use of the R2NN decoder is built \textit{(section \ref{section:r2nn_model})}
+    \item[\checkmark] An R\textsuperscript{2}NN model is implemented \textit{(section \ref{section:global_features} and \ref{section:r2nn_model})}
+    \item[\checkmark] An SMT-based GEC system making use of the R\textsuperscript{2}NN decoder is built \textit{(section \ref{section:r2nn_model})}
     \item[\checkmark] A comparison between the performances of the two systems is performed \textit{(chapter \ref{chapter:evaluation})}
 \end{itemize}
 
@@ -844,6 +837,8 @@ The $F_{0.5}$ score is computed based on precision $P$ and recall $R$. Let $T_P$
 
 $F_{0.5}$ is the weighted harmonic mean of $P$ and $R$ and is computed as 
 \[F_{0.5}=(1+0.5^2)\times\frac{P\times R}{0.5^2\times P+R}\]
+
+This weighs precision more than recall, since a change in $P$ impacts less on the denominator than the same change applied to $R$. As a result, $P$ will give a greater perturbation in the $F_{0.5}$ score since the numerator is evenly impacted by $P$ and $R$.
 
 \section{Testing}
 The held out FCE test set was used for testing. The m2 file of the FCE test set was processed as described in section \ref{section:setup}. We obtained two sentence-aligned files: one containing all the source sentences in the test set and one containing all the target sentences (gold reference). After Moses decoder and R\textsuperscript{2}NN decoder processed the source file, each system produced a translation file which contains the translations of the source sentences. We can then use ERRANT to evaluate the translation file against the gold reference file. ERRANT first aligns the source text with the system output to produce a hypothesis m2 file. This file can then be compared with the reference m2 file, and we can count the matching edits in terms of $T_P$, $F_P$ and $F_N$ to compute the $F_{0.5}$ score.
@@ -867,7 +862,7 @@ Before testing the Moses decoder, we should tune the parameters using a small am
 \label{fig:r2nn_test}
 \end{figure}
 
-To use the R\textsuperscript{2}NN decoder, firstly we need to split the sentence into phrases. Liu et al. did not specify the method they used for phrase splitting in the paper\cite{r2nn}, so I came up with a greedy method: starting from the beginning word of a sentence, we look for the longest possible phrase that appears in our top phrase table. If a phrase is found, we keep the phrase and move on to the remaining part of the sentence; if no such phrases are found, we make that word a phrase, and move on to the next word. An example is given below.
+To use the R\textsuperscript{2}NN decoder, firstly we need to split the sentence into phrases. I proposed and implemented a greedy search method: starting from the beginning word of a sentence, we look for the longest possible phrase that appears in our top phrase table. If a phrase is found, we keep the phrase and move on to the remaining part of the sentence; if no such phrases are found, we make that word a phrase, and move on to the next word. Intuitively, this would lead to using longer phrases which retain more contextual information than shorter phrases. An example is given below.
 
 \textbf{Sentence}\\
 \textit{I hope that he will recover soon and that he will make it to our conference .}
@@ -882,7 +877,7 @@ The next step was to obtain phrase pairs based on the sentence split. For each s
         (I hope that $\rightarrow$ I hope),
         \dots}
 
-However, when it came to testing, I discovered that the search space was too big for my laptop to process. To process a sentence with $k$ phrases while keeping $n$ best phrase pairs, the number of possible different trees is at least $n^k$. In order to finish testing within a reasonable amount of time, I decided not to keep the n-best phrase pairs but to keep the phrase pair that gives the highest score. The evaluation results of the translation file were saved to \texttt{ERRANT\_eval\_r2nn}.
+However, when it came to testing, I discovered that the search space was too big for my laptop to process. To process a sentence with $k$ phrases while keeping $n$ best phrase pairs, the number of possible different trees is at least $n^k$. In order to finish testing within a reasonable amount of time and to reduce the complexity, I decided to keep the phrase pair that gives the highest score, i.e. $n=1$. The evaluation results of the translation file were saved to \texttt{ERRANT\_eval\_r2nn}.
 
 \section{Results and Discussion}\label{section:results}
 Table \ref{table:eval_moses} and \ref{table:eval_r2nn} shows the scores reported by ERRANT for the baseline Moses system and R\textsuperscript{2}NN system.
@@ -912,7 +907,7 @@ Table \ref{table:eval_moses} and \ref{table:eval_r2nn} shows the scores reported
     \label{table:eval_r2nn}
 \end{table}
 
-We observe that the $F_{0.5}$ score of R\textsuperscript{2}NN is much lower than the baseline Moses system. Even though R\textsuperscript{2}NN gives a higher recall (lower proportion of missed edits), its precision is lower than that of Moses. Since $F_{0.5}$ weighs precision twice as much as recall, the resulting figure is low. We also observe that R\textsuperscript{2}NN gives more true positive but at the same time much more false positive (FP) than the baseline Moses. It suggests that R\textsuperscript{2}NN tend to make changes to the source sentence even when it should not have. 
+We observe that the $F_{0.5}$ score of R\textsuperscript{2}NN is much lower than the baseline Moses system. Even though R\textsuperscript{2}NN gives a higher recall (lower proportion of missed edits), its precision is lower than that of Moses. Since $F_{0.5}$ weighs precision twice as much as recall, the resulting figure is low. We also observe that R\textsuperscript{2}NN gives more true positives but at the same time more false positives (FP) than the baseline Moses. It suggests that R\textsuperscript{2}NN tend to make changes to the source sentence even when it should not have. 
 
 Consider the source sentence
 \begin{center}
@@ -960,18 +955,18 @@ There are some interesting translation results produced by the R\textsuperscript
     \textit{The most important building of Biasco is the , , Casa Cavalier Pellanda " .}
 \end{center}
 
-Both the gold reference and the Moses hypothesis are identical to the source sentence. However, the R\textsuperscript{2}NN model removed the two commas and added an opening quotation mark to match with the closing quotation mark. The R\textsuperscript{2}NN model also removed the word \textit{the} and the ending full stop. 
+Both the gold reference and the Moses hypothesis are identical to the source sentence. However, the output of the R\textsuperscript{2}NN model was
+\begin{center}
+    \textit{The most important building of Biasco is `` Casa Cavalier Pellanda "}
+\end{center}
 
-\textbf{R\textsuperscript{2}NN hypothesis}\\
-\textit{The most important building of Biasco is `` Casa Cavalier Pellanda "}
-
-In my opinion, the correct sentence should be
+As we can see, the R\textsuperscript{2}NN model removed the two commas and added an opening quotation mark to match with the closing quotation mark. The R\textsuperscript{2}NN model also removed the word \textit{the} and the ending full stop. In my opinion, the correct sentence should be
 \begin{center}
     \textit{The most important building of Biasco is the `` Casa Cavalier Pellanda " .}
 \end{center}
 which is different to the gold reference in the dataset. This reflects the complexity of GEC: human annotators do not always agree. It is also interesting that the R\textsuperscript{2}NN captured the punctuation errors of commas and quotation marks, but at the same time introduced more errors by removing the full stop and the article \textit{the}. 
 
-Overall, the R\textsuperscript{2}NN model has its potential: we saw that it successfully spotted some of the errors that were missed by the Moses SMT and even the human annotator. However, it tends to make changes to the original sentences even when the changes are not necessary, resulting in a much higher false positive than Moses. This has two implications: a lower precision as precision measures the proportion of \textbf{correct} edits out of all edits (large denominator), and a higher recall as recall measures the proportion of \textbf{missed} edits. The $F_{0.5}$ score of the R\textsuperscript{2}NN model was lower than the Moses SMT, but future researchers can refer to the implementation of such an R\textsuperscript{2}NN model and more work can be done to improve it.
+Overall, the R\textsuperscript{2}NN model has its potential: we saw that it successfully spotted some of the errors that were missed by the Moses SMT and even the human annotator. However, it tends to make changes to the original sentences even when the changes are not necessary, resulting in more false positives than Moses. This has two implications: a lower precision as precision measures the proportion of \textbf{correct} edits out of all edits (large denominator), and a higher recall as recall measures the proportion of \textbf{missed} edits. For GEC, high recall may be more useful for teachers and learners since it will flag up their mistakes more often. The $F_{0.5}$ score of the R\textsuperscript{2}NN model was lower than the Moses SMT, but future researchers can refer to the implementation of such an R\textsuperscript{2}NN model and more work can be done to improve it. Since these two systems have different strengths and weaknesses, further development in the GEC field may combine elements of both methods.
 
 \chapter{Conclusion}
 
@@ -1006,7 +1001,7 @@ Due to the time constraint of this project, I did not refine the R\textsuperscri
 % the appendices
 \appendix
 
-\chapter{Code Implementation}
+\chapter{Code Implementation}\label{appendix:code}
 
 \section{TreeNode}
 \begin{lstlisting}
