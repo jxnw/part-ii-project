@@ -162,4 +162,4 @@ torch.save({
     'epoch': n_epochs,
     'model_state_dict': rnn.state_dict(),
     'optimizer_state_dict': optimizer.state_dict()
-}, "rnn_state/model_state_rnn.pth")
+}, "model/RNN/rnn_state/model_state_rnn.pth")

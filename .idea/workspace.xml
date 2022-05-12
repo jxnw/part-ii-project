@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="e646ede1-5fa9-4b7f-9bbb-fcab4a1d1ca1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/R2NN/recursive_nn.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/R2NN/recursive_nn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helper_scripts/plot_sparse_eval.py" beforeDir="false" afterPath="$PROJECT_DIR$/helper_scripts/plot_sparse_eval.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/RNN/train_rnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/RNN/train_rnn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/sparse/save_ppe_sparse.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/save_ppe_sparse.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/sparse/train_one_hidden_layer.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/sparse/train_one_hidden_layer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project-reports/diss.tex" beforeDir="false" afterPath="$PROJECT_DIR$/project-reports/diss.tex" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,7 +48,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">

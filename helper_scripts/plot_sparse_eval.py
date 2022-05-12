@@ -19,10 +19,13 @@ for i in range(1, 11):
         print(scores)
 
 plt.plot(epochs, acc, 'ko')
+plt.xlabel('Number of Epochs')
 plt.ylabel('Accuracy')
 
 plt.plot(epochs, rec, 'co')
+plt.xlabel('Number of Epochs')
 plt.ylabel('Recall')
 
 plt.plot(epochs, f, 'mo')
+plt.xlabel('Number of Epochs')
 plt.ylabel('F0.5')

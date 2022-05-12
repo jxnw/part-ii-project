@@ -90,4 +90,4 @@ for epoch_id in range(epoch):
         'epoch': epoch,
         'model_state_dict': model.state_dict(),
         'optimizer_state_dict': optimizer.state_dict()
-    }, "one_hidden_layer/model_epoch{}.pth".format(epoch_id + 1))
+    }, "model/sparse/one_hidden_layer/model_epoch{}.pth".format(epoch_id + 1))
